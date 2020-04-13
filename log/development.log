@@ -1,0 +1,601 @@
+  [1m[35m (262.5ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_development" ENCODING = 'unicode'[0m
+  [1m[35m (113.5ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_test" ENCODING = 'unicode'[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_development" ENCODING = 'unicode'[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_test" ENCODING = 'unicode'[0m
+  [1m[35m (25.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (22.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (6.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5240438866332995745)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200412211518)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (26.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412211518"]]
+  [1m[35m (5.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMovies (20200412212033)
+  [1m[35m (16.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.9ms)[0m  [1m[35mCREATE TABLE "movies" ("id" bigserial primary key, "title" character varying, "poster" character varying, "genres" character varying, "description" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412212033"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsermovies (20200412212414)
+  [1m[35m (10.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (17.2ms)[0m  [1m[35mCREATE TABLE "user_movies" ("id" bigserial primary key, "user_id" bigint NOT NULL, "movie_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e6836e33a5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_af7366483f"
+FOREIGN KEY ("movie_id")
+  REFERENCES "movies" ("id")
+)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_user_id" ON "user_movies"  ("user_id")[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_movie_id" ON "user_movies"  ("movie_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412212414"]]
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (6.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-12 21:47:22.827913"], ["updated_at", "2020-04-12 21:47:22.827913"]]
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(5240438866332995745)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (38.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ShowroomBackend_development"[0m
+  [1m[35m (35.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ShowroomBackend_test"[0m
+  [1m[35m (199.9ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_development" ENCODING = 'unicode'[0m
+  [1m[35m (104.6ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_test" ENCODING = 'unicode'[0m
+  [1m[35m (29.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (23.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5240438866332995745)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200412211518)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (24.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412211518"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMovies (20200412212033)
+  [1m[35m (7.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (17.1ms)[0m  [1m[35mCREATE TABLE "movies" ("id" bigserial primary key, "title" character varying, "poster" character varying, "genres" character varying, "description" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412212033"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsermovies (20200412212414)
+  [1m[35m (7.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (19.4ms)[0m  [1m[35mCREATE TABLE "user_movies" ("id" bigserial primary key, "user_id" bigint NOT NULL, "movie_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e6836e33a5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_af7366483f"
+FOREIGN KEY ("movie_id")
+  REFERENCES "movies" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_user_id" ON "user_movies"  ("user_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_movie_id" ON "user_movies"  ("movie_id")[0m
+  [1m[36mprimary::SchemaMigration Create (2.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412212414"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-12 21:56:02.122609"], ["updated_at", "2020-04-12 21:56:02.122609"]]
+  [1m[35m (11.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5240438866332995745)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (1.0ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Tombstone"], ["poster", ""], ["genres", "awesome"], ["description", "best movie ever"], ["created_at", "2020-04-12 22:01:43.946610"], ["updated_at", "2020-04-12 22:01:43.946610"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (2.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Doug"], ["created_at", "2020-04-12 22:01:43.964917"], ["updated_at", "2020-04-12 22:01:43.964917"]]
+  [1m[35m (10.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (1.1ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Tombstone"], ["poster", ""], ["genres", "awesome"], ["description", "best movie ever"], ["created_at", "2020-04-12 22:02:12.296834"], ["updated_at", "2020-04-12 22:02:12.296834"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Doug"], ["created_at", "2020-04-12 22:02:12.317749"], ["updated_at", "2020-04-12 22:02:12.317749"]]
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMovie Load (0.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUserMovie Create (7.9ms)[0m  [1m[32mINSERT INTO "user_movies" ("user_id", "movie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["movie_id", 1], ["created_at", "2020-04-12 22:02:12.375013"], ["updated_at", "2020-04-12 22:02:12.375013"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mMovie Load (0.5ms)[0m  [1m[34mSELECT "movies".* FROM "movies" ORDER BY "movies"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUserMovie Load (0.5ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (7.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (60.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ShowroomBackend_development"[0m
+  [1m[35m (44.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ShowroomBackend_test"[0m
+  [1m[35m (397.3ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_development" ENCODING = 'unicode'[0m
+  [1m[35m (90.3ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_test" ENCODING = 'unicode'[0m
+  [1m[35m (22.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (26.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5240438866332995745)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200412211518)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (23.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412211518"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMovies (20200412212033)
+  [1m[35m (5.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (21.4ms)[0m  [1m[35mCREATE TABLE "movies" ("id" bigserial primary key, "title" character varying, "poster" character varying, "genres" character varying, "description" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412212033"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUserMovies (20200412230640)
+  [1m[35m (8.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (20.2ms)[0m  [1m[35mCREATE TABLE "user_movies" ("id" bigserial primary key, "user_id" bigint NOT NULL, "movie_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e6836e33a5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_af7366483f"
+FOREIGN KEY ("movie_id")
+  REFERENCES "movies" ("id")
+)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_user_id" ON "user_movies"  ("user_id")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_movie_id" ON "user_movies"  ("movie_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412230640"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-12 23:07:36.008493"], ["updated_at", "2020-04-12 23:07:36.008493"]]
+  [1m[35m (11.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5240438866332995745)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (1.2ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Tombstone"], ["poster", ""], ["genres", "awesome"], ["description", "best movie ever"], ["created_at", "2020-04-12 23:08:39.994684"], ["updated_at", "2020-04-12 23:08:39.994684"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Doug"], ["created_at", "2020-04-12 23:08:40.006885"], ["updated_at", "2020-04-12 23:08:40.006885"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUserMovie Create (19.4ms)[0m  [1m[32mINSERT INTO "user_movies" ("user_id", "movie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["movie_id", 1], ["created_at", "2020-04-12 23:08:40.036418"], ["updated_at", "2020-04-12 23:08:40.036418"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mMovie Load (1.0ms)[0m  [1m[34mSELECT "movies".* FROM "movies" ORDER BY "movies"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUserMovie Load (0.5ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies" ORDER BY "user_movies"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mMovie Load (0.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 11]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mMovie Load (0.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 11]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mMovie Load (0.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 11]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mMovie Load (0.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1 ORDER BY "movies"."id" ASC LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mMovie Load (0.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1 ORDER BY "movies"."id" ASC LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mMovie Load (0.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" ORDER BY "movies"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_movies" ON "users"."id" = "user_movies"."user_id" WHERE "user_movies"."movie_id" = $1 LIMIT $2[0m  [["movie_id", 1], ["LIMIT", 11]]
+  [1m[36mMovie Load (0.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" ORDER BY "movies"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_movies" ON "users"."id" = "user_movies"."user_id" WHERE "user_movies"."movie_id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["movie_id", 1], ["LIMIT", 1]]
+Started GET "/" for ::1 at 2020-04-12 18:50:05 -0500
+  [1m[35m (10.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/dougharrison/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/dougharrison/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 36.1ms | Allocations: 480)
+Completed 200 OK in 172ms (Views: 89.8ms | ActiveRecord: 0.0ms | Allocations: 2635)
+
+
+Started GET "/favicon.ico" for ::1 at 2020-04-12 18:50:06 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/movies" for ::1 at 2020-04-12 18:50:12 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/movies"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/movie" for ::1 at 2020-04-12 18:50:20 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/movie"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/" for ::1 at 2020-04-12 18:52:35 -0500
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/dougharrison/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/dougharrison/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 34.6ms | Allocations: 315)
+Completed 200 OK in 69ms (Views: 51.7ms | ActiveRecord: 0.0ms | Allocations: 1595)
+
+
+Started GET "/movies" for ::1 at 2020-04-12 18:52:37 -0500
+Processing by MoviesController#index as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 209)
+
+
+  
+SyntaxError (/Users/dougharrison/Development/code/BackEndShowroom/app/models/movie.rb:8: syntax error, unexpected '\n', expecting =>):
+  
+app/models/movie.rb:8: syntax error, unexpected '\n', expecting =>
+app/models/movie.rb:8: syntax error, unexpected '\n', expecting =>
+app/controllers/movies_controller.rb:4:in `index'
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (6.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (58.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ShowroomBackend_development"[0m
+  [1m[35m (58.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ShowroomBackend_test"[0m
+  [1m[35m (210.6ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_development" ENCODING = 'unicode'[0m
+  [1m[35m (161.5ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_test" ENCODING = 'unicode'[0m
+  [1m[35m (20.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (25.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5240438866332995745)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200412211518)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (29.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412211518"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMovies (20200412212033)
+  [1m[35m (10.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (29.5ms)[0m  [1m[35mCREATE TABLE "movies" ("id" bigserial primary key, "title" character varying, "poster" character varying, "genres" character varying, "description" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412212033"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUserMovies (20200412230640)
+  [1m[35m (13.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (31.4ms)[0m  [1m[35mCREATE TABLE "user_movies" ("id" bigserial primary key, "user_id" bigint NOT NULL, "movie_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e6836e33a5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_af7366483f"
+FOREIGN KEY ("movie_id")
+  REFERENCES "movies" ("id")
+)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_user_id" ON "user_movies"  ("user_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_movie_id" ON "user_movies"  ("movie_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412230640"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (4.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (12.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-13 15:43:33.662181"], ["updated_at", "2020-04-13 15:43:33.662181"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5240438866332995745)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (7.7ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Joker"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F9IS670.jpg?w=550&h=550&p=0"], ["genres", "[\"Drama\", \"Crime\"]"], ["description", "Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City. Arthur wears two masks -- the one he paints for his day job as a clown, and the guise he projects in a futile attempt to feel like he's part of the world around him. Isolated, bullied and disregarded by society, Fleck begins a slow descent into madness as he transforms into the criminal mastermind known as the Joker."], ["created_at", "2020-04-13 15:45:54.999344"], ["updated_at", "2020-04-13 15:45:54.999344"]]
+  [1m[35m (12.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Goonies"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4S7I00.jpg?w=550&h=550&p=0"], ["genres", "[\"Adventure\", \"Family\"]"], ["description", "Old-fashioned yarn about a band of adventurous kids who take on the might of a property developing company which plans to destroy their home to build a country club. When the children discover an old pirate map in the attic, they follow it into an underground cavern in search of lost treasure but come up against plenty of dangerous obstacles along the way."], ["created_at", "2020-04-13 15:45:55.028031"], ["updated_at", "2020-04-13 15:45:55.028031"]]
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.2ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Hangover"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4JAV20.jpg?w=550&h=550&p=0"], ["genres", "[\"Comedy\"]"], ["description", "Two days before his wedding, Doug (Justin Bartha) and three friends (Bradley Cooper, Ed Helms, Zach Galifianakis) drive to Las Vegas for a wild and memorable stag party. In fact, when the three groomsmen wake up the next morning, they can't remember a thing; nor can they find Doug. With little time to spare, the three hazy pals try to re-trace their steps and find Doug so they can get him back to Los Angeles in time to walk down the aisle."], ["created_at", "2020-04-13 15:45:55.036069"], ["updated_at", "2020-04-13 15:45:55.036069"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Topgun"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4Q2YX0.jpg?w=550&h=550&p=0"], ["genres", "[\"Action\", \"Adventure\", \"Scientology\"]"], ["description", "The Top Gun Naval Fighter Weapons School is where the best of the best train to refine their elite flying skills. When hotshot fighter pilot Maverick (Tom Cruise) is sent to the school, his reckless attitude and cocky demeanor put him at odds with the other pilots, especially the cool and collected Iceman (Val Kilmer). But Maverick isn't only competing to be the top fighter pilot, he's also fighting for the attention of his beautiful flight instructor, Charlotte Blackwood (Kelly McGillis)."], ["created_at", "2020-04-13 15:45:55.041193"], ["updated_at", "2020-04-13 15:45:55.041193"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.4ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "John Wick"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F7SH220.jpg?w=550&h=550&p=0"], ["genres", "[\"Action\", \"Thriller\"]"], ["description", "best movie ever"], ["created_at", "2020-04-13 15:45:55.046221"], ["updated_at", "2020-04-13 15:45:55.046221"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.2ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Ghostbusters"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4TDHC0.jpg?w=550&h=550&p=0"], ["genres", "[\"Comedy\", \"Fantasy\"]"], ["description", "After the members of a team of scientists (Harold Ramis, Dan Aykroyd, Bill Murray) lose their cushy positions at a university in New York City, they decide to become 'ghostbusters' to wage a high-tech battle with the supernatural for money. They stumble upon a gateway to another dimension, a doorway that will release evil upon the city. The Ghostbusters must now save New York from complete destruction."], ["created_at", "2020-04-13 15:45:55.049839"], ["updated_at", "2020-04-13 15:45:55.049839"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Spacejam"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4S5S30.jpg?w=550&h=550&p=0"], ["genres", "[\"Animation\", \"Family\"]"], ["description", "Swackhammer (Danny DeVito), an evil alien theme park owner, needs a new attraction at Moron Mountain. When his gang, the Nerdlucks, heads to Earth to kidnap Bugs Bunny (Billy West) and the Looney Tunes, Bugs challenges them to a basketball game to determine their fate. The aliens agree, but they steal the powers of NBA basketball players, including Larry Bird (Larry Bird) and Charles Barkley (Charles Barkley) -- so Bugs gets some help from superstar Michael Jordan (Michael Jordan)."], ["created_at", "2020-04-13 15:45:55.053173"], ["updated_at", "2020-04-13 15:45:55.053173"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Godzilla, Mothra and King Ghidorah"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4T31R0.jpg?w=550&h=550&p=0"], ["genres", "[\"Sci-fi\", \"Fantasy\"]"], ["description", "Three monsters battle the giant lizard to prevent it from destroying Japan."], ["created_at", "2020-04-13 15:45:55.060740"], ["updated_at", "2020-04-13 15:45:55.060740"]]
+  [1m[35m (6.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.4ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Toy Story 4"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F9HNH20.jpg?w=550&h=550&p=0"], ["genres", "[\"Family\", \"Comedy\"]"], ["description", "Woody, Buzz Lightyear and the rest of the gang embark on a road trip with Bonnie and a new toy named Forky. The adventurous journey turns into an unexpected reunion as Woody's slight detour leads him to his long-lost friend Bo Peep. As Woody and Bo discuss the old days, they soon start to realize that they're worlds apart when it comes to what they want from life as a toy."], ["created_at", "2020-04-13 15:45:55.071526"], ["updated_at", "2020-04-13 15:45:55.071526"]]
+  [1m[35m (5.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Bohemian Rhapsody"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F9FWY60.jpg?w=550&h=550&p=0"], ["genres", "[\"Drama\", \"Music\"]"], ["description", "Freddie Mercury -- the lead singer of Queen -- defies stereotypes and convention to become one of history's most beloved entertainers. The band's revolutionary sound and popular songs lead to Queen's meteoric rise in the 1970s. After leaving the group to pursue a solo career, Mercury reunites with Queen for the benefit concert Live Aid -- resulting in one of the greatest performances in rock 'n' roll history."], ["created_at", "2020-04-13 15:45:55.082750"], ["updated_at", "2020-04-13 15:45:55.082750"]]
+  [1m[35m (6.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (1.5ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Tiger King"], ["poster", "https://i.ibb.co/GkDmqx5/tigerking.jpg"], ["genres", "[\"True Crime\", \"Documentary\"]"], ["description", "An exploration of big cat breeding and its bizarre underworld, populated by eccentric characters."], ["created_at", "2020-04-13 15:45:55.094044"], ["updated_at", "2020-04-13 15:45:55.094044"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Spider-Man: Into the Spider-Verse"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F9HNHI0.jpg?w=550&h=550&p=0"], ["genres", "[\"Animation\", \"Action\"]"], ["description", "Bitten by a radioactive spider in the subway, Brooklyn teenager Miles Morales suddenly develops mysterious powers that transform him into the one and only Spider-Man. When he meets Peter Parker, he soon realizes that there are many others who share his special, high-flying talents. Miles must now use his newfound skills to battle the evil Kingpin, a hulking madman who can open portals to other universes and pull different versions of Spider-Man into our world."], ["created_at", "2020-04-13 15:45:55.099335"], ["updated_at", "2020-04-13 15:45:55.099335"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.4ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Princess Bride"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-Q19V4B70.jpg?w=550&h=550&p=0"], ["genres", "[\"Family\", \"Adventure\", \"Romance\"]"], ["description", "A fairy tale adventure about a beautiful young woman and her one true love. He must find her after a long separation and save her. They must battle the evils of the mythical kingdom of Florin to be reunited with each other. Based on the William Goldman novel 'The Princess Bride' which earned its own loyal audience."], ["created_at", "2020-04-13 15:45:55.103120"], ["updated_at", "2020-04-13 15:45:55.103120"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Notebook"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4S66X0.jpg?w=550&h=550&p=0"], ["genres", "[\"Romance\", \"Drama\"]"], ["description", "In 1940s South Carolina, mill worker Noah Calhoun (Ryan Gosling) and rich girl Allie (Rachel McAdams) are desperately in love. But her parents don't approve. When Noah goes off to serve in World War II, it seems to mark the end of their love affair. In the interim, Allie becomes involved with another man (James Marsden). But when Noah returns to their small town years later, on the cusp of Allie's marriage, it soon becomes clear that their romance is anything but over."], ["created_at", "2020-04-13 15:45:55.107474"], ["updated_at", "2020-04-13 15:45:55.107474"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.2ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "It"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F94VG10.jpg?w=550&h=550&p=0"], ["genres", "[\"Horror\", \"Thriller\"]"], ["description", "Seven young outcasts in Derry, Maine, are about to face their worst nightmare -- an ancient, shape-shifting evil that emerges from the sewer every 27 years to prey on the town's children. Banding together over the course of one horrifying summer, the friends must overcome their own personal fears to battle the murderous, bloodthirsty clown known as Pennywise."], ["created_at", "2020-04-13 15:45:55.111541"], ["updated_at", "2020-04-13 15:45:55.111541"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.5ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Room"], ["poster", "https://i.ibb.co/4dhMcj6/the-room-poster-1.jpg"], ["genres", "[\"Romance\", \"Drama\"]"], ["description", "Johnny is a successful banker who lives happily in a San Francisco townhouse with his fiancée, Lisa. One day, inexplicably, she gets bored of him and decides to seduce Johnny's best friend, Mark. From there, nothing will be the same again."], ["created_at", "2020-04-13 15:45:55.114744"], ["updated_at", "2020-04-13 15:45:55.114744"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (13.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Doug"], ["created_at", "2020-04-13 15:45:55.130946"], ["updated_at", "2020-04-13 15:45:55.130946"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Reese"], ["created_at", "2020-04-13 15:45:55.148670"], ["updated_at", "2020-04-13 15:45:55.148670"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUserMovie Create (14.4ms)[0m  [1m[32mINSERT INTO "user_movies" ("user_id", "movie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["movie_id", 1], ["created_at", "2020-04-13 15:45:55.183462"], ["updated_at", "2020-04-13 15:45:55.183462"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMovie Load (0.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mMovie Load (0.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" ORDER BY "movies"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (7.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (89.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ShowroomBackend_development"[0m
+  [1m[35m (73.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ShowroomBackend_test"[0m
+  [1m[35m (351.2ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_development" ENCODING = 'unicode'[0m
+  [1m[35m (187.4ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_test" ENCODING = 'unicode'[0m
+  [1m[35m (25.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (19.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5240438866332995745)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200412211518)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (43.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (47.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412211518"]]
+  [1m[35m (5.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMovies (20200412212033)
+  [1m[35m (41.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (99.1ms)[0m  [1m[35mCREATE TABLE "movies" ("id" bigserial primary key, "title" character varying, "poster" character varying, "genres" text[] DEFAULT '{}', "description" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412212033"]]
+  [1m[35m (31.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUserMovies (20200412230640)
+  [1m[35m (56.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.4ms)[0m  [1m[35mCREATE TABLE "user_movies" ("id" bigserial primary key, "user_id" bigint NOT NULL, "movie_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e6836e33a5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_af7366483f"
+FOREIGN KEY ("movie_id")
+  REFERENCES "movies" ("id")
+)[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_user_id" ON "user_movies"  ("user_id")[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_movie_id" ON "user_movies"  ("movie_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412230640"]]
+  [1m[35m (9.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-13 16:13:55.373020"], ["updated_at", "2020-04-13 16:13:55.373020"]]
+  [1m[35m (39.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (9.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5240438866332995745)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (4.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (2.6ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Joker"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F9IS670.jpg?w=550&h=550&p=0"], ["genres", "{Drama,Crime}"], ["description", "Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City. Arthur wears two masks -- the one he paints for his day job as a clown, and the guise he projects in a futile attempt to feel like he's part of the world around him. Isolated, bullied and disregarded by society, Fleck begins a slow descent into madness as he transforms into the criminal mastermind known as the Joker."], ["created_at", "2020-04-13 16:14:34.609784"], ["updated_at", "2020-04-13 16:14:34.609784"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Goonies"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4S7I00.jpg?w=550&h=550&p=0"], ["genres", "{Adventure,Family}"], ["description", "Old-fashioned yarn about a band of adventurous kids who take on the might of a property developing company which plans to destroy their home to build a country club. When the children discover an old pirate map in the attic, they follow it into an underground cavern in search of lost treasure but come up against plenty of dangerous obstacles along the way."], ["created_at", "2020-04-13 16:14:34.633029"], ["updated_at", "2020-04-13 16:14:34.633029"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Hangover"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4JAV20.jpg?w=550&h=550&p=0"], ["genres", "{Comedy}"], ["description", "Two days before his wedding, Doug (Justin Bartha) and three friends (Bradley Cooper, Ed Helms, Zach Galifianakis) drive to Las Vegas for a wild and memorable stag party. In fact, when the three groomsmen wake up the next morning, they can't remember a thing; nor can they find Doug. With little time to spare, the three hazy pals try to re-trace their steps and find Doug so they can get him back to Los Angeles in time to walk down the aisle."], ["created_at", "2020-04-13 16:14:34.637343"], ["updated_at", "2020-04-13 16:14:34.637343"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Topgun"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4Q2YX0.jpg?w=550&h=550&p=0"], ["genres", "{Action,Adventure,Scientology}"], ["description", "The Top Gun Naval Fighter Weapons School is where the best of the best train to refine their elite flying skills. When hotshot fighter pilot Maverick (Tom Cruise) is sent to the school, his reckless attitude and cocky demeanor put him at odds with the other pilots, especially the cool and collected Iceman (Val Kilmer). But Maverick isn't only competing to be the top fighter pilot, he's also fighting for the attention of his beautiful flight instructor, Charlotte Blackwood (Kelly McGillis)."], ["created_at", "2020-04-13 16:14:34.644865"], ["updated_at", "2020-04-13 16:14:34.644865"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.4ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "John Wick"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F7SH220.jpg?w=550&h=550&p=0"], ["genres", "{Action,Thriller}"], ["description", "best movie ever"], ["created_at", "2020-04-13 16:14:34.649360"], ["updated_at", "2020-04-13 16:14:34.649360"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Ghostbusters"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4TDHC0.jpg?w=550&h=550&p=0"], ["genres", "{Comedy,Fantasy}"], ["description", "After the members of a team of scientists (Harold Ramis, Dan Aykroyd, Bill Murray) lose their cushy positions at a university in New York City, they decide to become 'ghostbusters' to wage a high-tech battle with the supernatural for money. They stumble upon a gateway to another dimension, a doorway that will release evil upon the city. The Ghostbusters must now save New York from complete destruction."], ["created_at", "2020-04-13 16:14:34.655534"], ["updated_at", "2020-04-13 16:14:34.655534"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Spacejam"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4S5S30.jpg?w=550&h=550&p=0"], ["genres", "{Animation,Family}"], ["description", "Swackhammer (Danny DeVito), an evil alien theme park owner, needs a new attraction at Moron Mountain. When his gang, the Nerdlucks, heads to Earth to kidnap Bugs Bunny (Billy West) and the Looney Tunes, Bugs challenges them to a basketball game to determine their fate. The aliens agree, but they steal the powers of NBA basketball players, including Larry Bird (Larry Bird) and Charles Barkley (Charles Barkley) -- so Bugs gets some help from superstar Michael Jordan (Michael Jordan)."], ["created_at", "2020-04-13 16:14:34.666991"], ["updated_at", "2020-04-13 16:14:34.666991"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Godzilla, Mothra and King Ghidorah"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4T31R0.jpg?w=550&h=550&p=0"], ["genres", "{Sci-fi,Fantasy}"], ["description", "Three monsters battle the giant lizard to prevent it from destroying Japan."], ["created_at", "2020-04-13 16:14:34.670726"], ["updated_at", "2020-04-13 16:14:34.670726"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.5ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Toy Story 4"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F9HNH20.jpg?w=550&h=550&p=0"], ["genres", "{Family,Comedy}"], ["description", "Woody, Buzz Lightyear and the rest of the gang embark on a road trip with Bonnie and a new toy named Forky. The adventurous journey turns into an unexpected reunion as Woody's slight detour leads him to his long-lost friend Bo Peep. As Woody and Bo discuss the old days, they soon start to realize that they're worlds apart when it comes to what they want from life as a toy."], ["created_at", "2020-04-13 16:14:34.676989"], ["updated_at", "2020-04-13 16:14:34.676989"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (1.8ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Bohemian Rhapsody"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F9FWY60.jpg?w=550&h=550&p=0"], ["genres", "{Drama,Music}"], ["description", "Freddie Mercury -- the lead singer of Queen -- defies stereotypes and convention to become one of history's most beloved entertainers. The band's revolutionary sound and popular songs lead to Queen's meteoric rise in the 1970s. After leaving the group to pursue a solo career, Mercury reunites with Queen for the benefit concert Live Aid -- resulting in one of the greatest performances in rock 'n' roll history."], ["created_at", "2020-04-13 16:14:34.685053"], ["updated_at", "2020-04-13 16:14:34.685053"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Tiger King"], ["poster", "https://i.ibb.co/GkDmqx5/tigerking.jpg"], ["genres", "{\"True Crime\",Documentary}"], ["description", "An exploration of big cat breeding and its bizarre underworld, populated by eccentric characters."], ["created_at", "2020-04-13 16:14:34.697600"], ["updated_at", "2020-04-13 16:14:34.697600"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.4ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Spider-Man: Into the Spider-Verse"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F9HNHI0.jpg?w=550&h=550&p=0"], ["genres", "{Animation,Action}"], ["description", "Bitten by a radioactive spider in the subway, Brooklyn teenager Miles Morales suddenly develops mysterious powers that transform him into the one and only Spider-Man. When he meets Peter Parker, he soon realizes that there are many others who share his special, high-flying talents. Miles must now use his newfound skills to battle the evil Kingpin, a hulking madman who can open portals to other universes and pull different versions of Spider-Man into our world."], ["created_at", "2020-04-13 16:14:34.701587"], ["updated_at", "2020-04-13 16:14:34.701587"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Princess Bride"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-Q19V4B70.jpg?w=550&h=550&p=0"], ["genres", "{Family,Adventure,Romance}"], ["description", "A fairy tale adventure about a beautiful young woman and her one true love. He must find her after a long separation and save her. They must battle the evils of the mythical kingdom of Florin to be reunited with each other. Based on the William Goldman novel 'The Princess Bride' which earned its own loyal audience."], ["created_at", "2020-04-13 16:14:34.705493"], ["updated_at", "2020-04-13 16:14:34.705493"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Notebook"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4S66X0.jpg?w=550&h=550&p=0"], ["genres", "{Romance,Drama}"], ["description", "In 1940s South Carolina, mill worker Noah Calhoun (Ryan Gosling) and rich girl Allie (Rachel McAdams) are desperately in love. But her parents don't approve. When Noah goes off to serve in World War II, it seems to mark the end of their love affair. In the interim, Allie becomes involved with another man (James Marsden). But when Noah returns to their small town years later, on the cusp of Allie's marriage, it soon becomes clear that their romance is anything but over."], ["created_at", "2020-04-13 16:14:34.716835"], ["updated_at", "2020-04-13 16:14:34.716835"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.8ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "It"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F94VG10.jpg?w=550&h=550&p=0"], ["genres", "{Horror,Thriller}"], ["description", "Seven young outcasts in Derry, Maine, are about to face their worst nightmare -- an ancient, shape-shifting evil that emerges from the sewer every 27 years to prey on the town's children. Banding together over the course of one horrifying summer, the friends must overcome their own personal fears to battle the murderous, bloodthirsty clown known as Pennywise."], ["created_at", "2020-04-13 16:14:34.727855"], ["updated_at", "2020-04-13 16:14:34.727855"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.6ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Room"], ["poster", "https://i.ibb.co/4dhMcj6/the-room-poster-1.jpg"], ["genres", "{Romance,Drama}"], ["description", "Johnny is a successful banker who lives happily in a San Francisco townhouse with his fiancée, Lisa. One day, inexplicably, she gets bored of him and decides to seduce Johnny's best friend, Mark. From there, nothing will be the same again."], ["created_at", "2020-04-13 16:14:34.735262"], ["updated_at", "2020-04-13 16:14:34.735262"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Doug"], ["created_at", "2020-04-13 16:14:34.756393"], ["updated_at", "2020-04-13 16:14:34.756393"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Reese"], ["created_at", "2020-04-13 16:14:34.766364"], ["updated_at", "2020-04-13 16:14:34.766364"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMovie Load (0.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" ORDER BY "movies"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (10.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (105.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ShowroomBackend_development"[0m
+  [1m[35m (72.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ShowroomBackend_test"[0m
+  [1m[35m (300.2ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_development" ENCODING = 'unicode'[0m
+  [1m[35m (248.8ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_test" ENCODING = 'unicode'[0m
+  [1m[35m (55.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (28.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5240438866332995745)[0m
+  [1m[35m (9.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200412211518)
+  [1m[35m (4.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (65.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412211518"]]
+  [1m[35m (12.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMovies (20200412212033)
+  [1m[35m (6.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (26.1ms)[0m  [1m[35mCREATE TABLE "movies" ("id" bigserial primary key, "title" character varying, "poster" character varying, "genres" text[] DEFAULT '{}', "description" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (16.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412212033"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUserMovies (20200412230640)
+  [1m[35m (23.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (28.0ms)[0m  [1m[35mCREATE TABLE "user_movies" ("id" bigserial primary key, "user_id" bigint NOT NULL, "movie_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e6836e33a5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_af7366483f"
+FOREIGN KEY ("movie_id")
+  REFERENCES "movies" ("id")
+)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_user_id" ON "user_movies"  ("user_id")[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_movie_id" ON "user_movies"  ("movie_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412230640"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-13 16:51:42.708982"], ["updated_at", "2020-04-13 16:51:42.708982"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(5240438866332995745)[0m
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (2.2ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Joker"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F9IS670.jpg?w=550&h=550&p=0"], ["genres", "{Drama,Crime}"], ["description", "Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City. Arthur wears two masks -- the one he paints for his day job as a clown, and the guise he projects in a futile attempt to feel like he's part of the world around him. Isolated, bullied and disregarded by society, Fleck begins a slow descent into madness as he transforms into the criminal mastermind known as the Joker."], ["created_at", "2020-04-13 16:51:53.053515"], ["updated_at", "2020-04-13 16:51:53.053515"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Goonies"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4S7I00.jpg?w=550&h=550&p=0"], ["genres", "{Adventure,Family}"], ["description", "Old-fashioned yarn about a band of adventurous kids who take on the might of a property developing company which plans to destroy their home to build a country club. When the children discover an old pirate map in the attic, they follow it into an underground cavern in search of lost treasure but come up against plenty of dangerous obstacles along the way."], ["created_at", "2020-04-13 16:51:53.063464"], ["updated_at", "2020-04-13 16:51:53.063464"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Hangover"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4JAV20.jpg?w=550&h=550&p=0"], ["genres", "{Comedy}"], ["description", "Two days before his wedding, Doug (Justin Bartha) and three friends (Bradley Cooper, Ed Helms, Zach Galifianakis) drive to Las Vegas for a wild and memorable stag party. In fact, when the three groomsmen wake up the next morning, they can't remember a thing; nor can they find Doug. With little time to spare, the three hazy pals try to re-trace their steps and find Doug so they can get him back to Los Angeles in time to walk down the aisle."], ["created_at", "2020-04-13 16:51:53.077919"], ["updated_at", "2020-04-13 16:51:53.077919"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.4ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Topgun"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4Q2YX0.jpg?w=550&h=550&p=0"], ["genres", "{Action,Adventure,Scientology}"], ["description", "The Top Gun Naval Fighter Weapons School is where the best of the best train to refine their elite flying skills. When hotshot fighter pilot Maverick (Tom Cruise) is sent to the school, his reckless attitude and cocky demeanor put him at odds with the other pilots, especially the cool and collected Iceman (Val Kilmer). But Maverick isn't only competing to be the top fighter pilot, he's also fighting for the attention of his beautiful flight instructor, Charlotte Blackwood (Kelly McGillis)."], ["created_at", "2020-04-13 16:51:53.086235"], ["updated_at", "2020-04-13 16:51:53.086235"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.8ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "John Wick"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F7SH220.jpg?w=550&h=550&p=0"], ["genres", "{Action,Thriller}"], ["description", "John Wick is an American action thriller media franchise created by Derek Kolstad and owned by Summit Entertainment. Keanu Reeves plays John Wick, a retired hitman seeking vengeance for the killing of the dog given to him by his recently-deceased wife."], ["created_at", "2020-04-13 16:51:53.091687"], ["updated_at", "2020-04-13 16:51:53.091687"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Ghostbusters"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4TDHC0.jpg?w=550&h=550&p=0"], ["genres", "{Comedy,Fantasy}"], ["description", "After the members of a team of scientists (Harold Ramis, Dan Aykroyd, Bill Murray) lose their cushy positions at a university in New York City, they decide to become 'ghostbusters' to wage a high-tech battle with the supernatural for money. They stumble upon a gateway to another dimension, a doorway that will release evil upon the city. The Ghostbusters must now save New York from complete destruction."], ["created_at", "2020-04-13 16:51:53.105215"], ["updated_at", "2020-04-13 16:51:53.105215"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Spacejam"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4S5S30.jpg?w=550&h=550&p=0"], ["genres", "{Animation,Family}"], ["description", "Swackhammer (Danny DeVito), an evil alien theme park owner, needs a new attraction at Moron Mountain. When his gang, the Nerdlucks, heads to Earth to kidnap Bugs Bunny (Billy West) and the Looney Tunes, Bugs challenges them to a basketball game to determine their fate. The aliens agree, but they steal the powers of NBA basketball players, including Larry Bird (Larry Bird) and Charles Barkley (Charles Barkley) -- so Bugs gets some help from superstar Michael Jordan (Michael Jordan)."], ["created_at", "2020-04-13 16:51:53.112333"], ["updated_at", "2020-04-13 16:51:53.112333"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.2ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Godzilla, Mothra and King Ghidorah"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4T31R0.jpg?w=550&h=550&p=0"], ["genres", "{Sci-fi,Fantasy}"], ["description", "Three monsters battle the giant lizard to prevent it from destroying Japan."], ["created_at", "2020-04-13 16:51:53.116957"], ["updated_at", "2020-04-13 16:51:53.116957"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.8ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Toy Story 4"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F9HNH20.jpg?w=550&h=550&p=0"], ["genres", "{Family,Comedy}"], ["description", "Woody, Buzz Lightyear and the rest of the gang embark on a road trip with Bonnie and a new toy named Forky. The adventurous journey turns into an unexpected reunion as Woody's slight detour leads him to his long-lost friend Bo Peep. As Woody and Bo discuss the old days, they soon start to realize that they're worlds apart when it comes to what they want from life as a toy."], ["created_at", "2020-04-13 16:51:53.121757"], ["updated_at", "2020-04-13 16:51:53.121757"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (2.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.8ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Bohemian Rhapsody"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F9FWY60.jpg?w=550&h=550&p=0"], ["genres", "{Drama,Music}"], ["description", "Freddie Mercury -- the lead singer of Queen -- defies stereotypes and convention to become one of history's most beloved entertainers. The band's revolutionary sound and popular songs lead to Queen's meteoric rise in the 1970s. After leaving the group to pursue a solo career, Mercury reunites with Queen for the benefit concert Live Aid -- resulting in one of the greatest performances in rock 'n' roll history."], ["created_at", "2020-04-13 16:51:53.128499"], ["updated_at", "2020-04-13 16:51:53.128499"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Tiger King"], ["poster", "https://i.ibb.co/GkDmqx5/tigerking.jpg"], ["genres", "{\"True Crime\",Documentary}"], ["description", "An exploration of big cat breeding and its bizarre underworld, populated by eccentric characters."], ["created_at", "2020-04-13 16:51:53.143177"], ["updated_at", "2020-04-13 16:51:53.143177"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.4ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Spider-Man: Into the Spider-Verse"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F9HNHI0.jpg?w=550&h=550&p=0"], ["genres", "{Animation,Action}"], ["description", "Bitten by a radioactive spider in the subway, Brooklyn teenager Miles Morales suddenly develops mysterious powers that transform him into the one and only Spider-Man. When he meets Peter Parker, he soon realizes that there are many others who share his special, high-flying talents. Miles must now use his newfound skills to battle the evil Kingpin, a hulking madman who can open portals to other universes and pull different versions of Spider-Man into our world."], ["created_at", "2020-04-13 16:51:53.149427"], ["updated_at", "2020-04-13 16:51:53.149427"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.4ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Princess Bride"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-Q19V4B70.jpg?w=550&h=550&p=0"], ["genres", "{Family,Adventure,Romance}"], ["description", "A fairy tale adventure about a beautiful young woman and her one true love. He must find her after a long separation and save her. They must battle the evils of the mythical kingdom of Florin to be reunited with each other. Based on the William Goldman novel 'The Princess Bride' which earned its own loyal audience."], ["created_at", "2020-04-13 16:51:53.155967"], ["updated_at", "2020-04-13 16:51:53.155967"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Notebook"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F4S66X0.jpg?w=550&h=550&p=0"], ["genres", "{Romance,Drama}"], ["description", "In 1940s South Carolina, mill worker Noah Calhoun (Ryan Gosling) and rich girl Allie (Rachel McAdams) are desperately in love. But her parents don't approve. When Noah goes off to serve in World War II, it seems to mark the end of their love affair. In the interim, Allie becomes involved with another man (James Marsden). But when Noah returns to their small town years later, on the cusp of Allie's marriage, it soon becomes clear that their romance is anything but over."], ["created_at", "2020-04-13 16:51:53.161495"], ["updated_at", "2020-04-13 16:51:53.161495"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.8ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "It"], ["poster", "https://imgc.allpostersimages.com/img/print/u-g-F94VG10.jpg?w=550&h=550&p=0"], ["genres", "{Horror,Thriller}"], ["description", "Seven young outcasts in Derry, Maine, are about to face their worst nightmare -- an ancient, shape-shifting evil that emerges from the sewer every 27 years to prey on the town's children. Banding together over the course of one horrifying summer, the friends must overcome their own personal fears to battle the murderous, bloodthirsty clown known as Pennywise."], ["created_at", "2020-04-13 16:51:53.172124"], ["updated_at", "2020-04-13 16:51:53.172124"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (0.3ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster", "genres", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "The Room"], ["poster", "https://i.ibb.co/4dhMcj6/the-room-poster-1.jpg"], ["genres", "{Romance,Drama}"], ["description", "Johnny is a successful banker who lives happily in a San Francisco townhouse with his fiancée, Lisa. One day, inexplicably, she gets bored of him and decides to seduce Johnny's best friend, Mark. From there, nothing will be the same again."], ["created_at", "2020-04-13 16:51:53.182542"], ["updated_at", "2020-04-13 16:51:53.182542"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Doug"], ["created_at", "2020-04-13 16:51:53.210263"], ["updated_at", "2020-04-13 16:51:53.210263"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Reese"], ["created_at", "2020-04-13 16:51:53.218667"], ["updated_at", "2020-04-13 16:51:53.218667"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
