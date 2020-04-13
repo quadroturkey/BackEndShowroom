@@ -34,7 +34,7 @@ Movie.create(
     title: "John Wick", 
     poster: "https://imgc.allpostersimages.com/img/print/u-g-F7SH220.jpg?w=550&h=550&p=0", 
     genres: ["Action", "Thriller"], 
-    description: "best movie ever")
+    description: "John Wick is an American action thriller media franchise created by Derek Kolstad and owned by Summit Entertainment. Keanu Reeves plays John Wick, a retired hitman seeking vengeance for the killing of the dog given to him by his recently-deceased wife.")
 
 Movie.create(
     title: "Ghostbusters", 
