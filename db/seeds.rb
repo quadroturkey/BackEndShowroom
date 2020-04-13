@@ -15,7 +15,7 @@ Movie.create(
 Movie.create(
     title: "The Goonies", 
     poster: "https://imgc.allpostersimages.com/img/print/u-g-F4S7I00.jpg?w=550&h=550&p=0", 
-    genres: ["Adventure", "Family" ],
+    genres: ["Adventure", "Family"],
     description: "Old-fashioned yarn about a band of adventurous kids who take on the might of a property developing company which plans to destroy their home to build a country club. When the children discover an old pirate map in the attic, they follow it into an underground cavern in search of lost treasure but come up against plenty of dangerous obstacles along the way.")
 
 Movie.create(
@@ -108,5 +108,5 @@ User.create(name: "Reese")
 
 
 
-UserMovie.create(user_id: 1, movie_id: 1)
-UserMovie.create(user_id: 2, movie)
+# UserMovie.create(user_id: 1, movie_id: 1)
+# UserMovie.create(user_id: 2, movie_id: )
