@@ -108,5 +108,8 @@ User.create(name: "Reese")
 
 
 
-# UserMovie.create(user_id: 1, movie_id: 1)
+UserMovie.create(user_id: 1, movie_id: 1)
+UserMovie.create(user_id: 1, movie_id: 4)
+UserMovie.create(user_id: 1, movie_id: 11)
+
 # UserMovie.create(user_id: 2, movie_id: )
