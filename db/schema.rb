@@ -17,9 +17,11 @@ ActiveRecord::Schema.define(version: 2020_04_12_230640) do
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
-    t.string "poster"
-    t.text "genres", default: [], array: true
-    t.string "description"
+    t.string "poster_path"
+    t.string "release_date"
+    t.integer "vote_average"
+    t.string "overview"
+    t.integer "genre_ids", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
