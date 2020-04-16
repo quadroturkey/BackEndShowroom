@@ -1,10 +1,41 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+User.create(name: "Doug")
+User.create(name: "Reese")
+
+Genre.create(id: 28, name: "Action")
+Genre.create(id: 12, name: "Adventure")
+Genre.create(id: 16, name: "Animation")
+Genre.create(id: 35, name: "Comedy")
+Genre.create(id: 80, name: "Crime")
+Genre.create(id: 99, name: "Documentary")
+Genre.create(id: 18, name: "Drama")
+Genre.create(id: 10751, name: "Family")
+Genre.create(id: 14, name: "Fantasy")
+Genre.create(id: 36, name: "History")
+Genre.create(id: 27, name: "Horror")
+Genre.create(id: 10402, name: "Music")
+Genre.create(id: 9648, name: "Mystery")
+Genre.create(id: 10749, name: "Romance")
+Genre.create(id: 878, name: "Science Fiction")
+Genre.create(id: 10770, name: "TV Movie")
+Genre.create(id: 53, name: "Thriller")
+Genre.create(id: 10752, name: "War")
+Genre.create(id: 37, name: "Western")
+
+
+Movie.create(
+    title: "Tombstone", 
+    poster_path: "/yeik25zBwLOlUWIZIiW3KsSH71Q.jpg", 
+    release_date: "1993-12-25",
+    vote_average: 7.5,
+    overview: "An outlaw named Guerrero Hernandez is shot in the back and killed whilst attempting to free his half-brother from a small-town prison. Making a deal with the devil, Hernandez returns from the dead to take his revenge.")
+    
+UserMovie.create(user_id: 1, movie_id: 1)
+MovieGenre.create(movie_id: 1, genre_id: 37)
+MovieGenre.create(movie_id: 1, genre_id: 28)
+
+
+
+
 
 # Movie.create(
 #     title: "Joker", 
@@ -96,21 +127,10 @@
 #     genres: ["Horror", "Thriller"],
 #     description: "Seven young outcasts in Derry, Maine, are about to face their worst nightmare -- an ancient, shape-shifting evil that emerges from the sewer every 27 years to prey on the town's children. Banding together over the course of one horrifying summer, the friends must overcome their own personal fears to battle the murderous, bloodthirsty clown known as Pennywise.")
 
-Movie.create(
-    title: "Tombstone", 
-    poster_path: "/yeik25zBwLOlUWIZIiW3KsSH71Q.jpg", 
-    release_date: "1993-12-25",
-    vote_average: 7.5,
-    overview: "An outlaw named Guerrero Hernandez is shot in the back and killed whilst attempting to free his half-brother from a small-town prison. Making a deal with the devil, Hernandez returns from the dead to take his revenge.",
-    genre_ids: [28, 37])
-
-
-User.create(name: "Doug")
-User.create(name: "Reese")
 
 
 
-UserMovie.create(user_id: 1, movie_id: 1)
+
 # UserMovie.create(user_id: 1, movie_id: 4)
 # UserMovie.create(user_id: 1, movie_id: 11)
 

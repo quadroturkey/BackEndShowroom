@@ -2498,3 +2498,431 @@ Completed 200 OK in 56ms (Views: 29.8ms | ActiveRecord: 13.1ms | Allocations: 17
 >>>>>>> master
 
 
+  [1m[35m (7.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (11.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (110.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ShowroomBackend_development"[0m
+  [1m[35m (67.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ShowroomBackend_test"[0m
+  [1m[35m (209.6ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_development" ENCODING = 'unicode'[0m
+  [1m[35m (107.9ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_test" ENCODING = 'unicode'[0m
+  [1m[35m (25.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (23.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5240438866332995745)[0m
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200412211518)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (25.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412211518"]]
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMovies (20200412212033)
+  [1m[35m (5.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (26.0ms)[0m  [1m[35mCREATE TABLE "movies" ("id" bigserial primary key, "title" character varying, "poster_path" character varying, "release_date" character varying, "vote_average" integer, "overview" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (3.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412212033"]]
+  [1m[35m (11.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUserMovies (20200412230640)
+  [1m[35m (16.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (38.6ms)[0m  [1m[35mCREATE TABLE "user_movies" ("id" bigserial primary key, "user_id" bigint NOT NULL, "movie_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e6836e33a5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_af7366483f"
+FOREIGN KEY ("movie_id")
+  REFERENCES "movies" ("id")
+)[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_user_id" ON "user_movies"  ("user_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_movie_id" ON "user_movies"  ("movie_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412230640"]]
+  [1m[35m (42.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateGenres (20200415181234)
+  [1m[35m (8.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (27.7ms)[0m  [1m[35mCREATE TABLE "genres" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200415181234"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMovieGenres (20200415181600)
+  [1m[35m (5.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.6ms)[0m  [1m[35mCREATE TABLE "movie_genres" ("id" bigserial primary key, "movie_id" bigint NOT NULL, "genre_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e153f3c39b"
+FOREIGN KEY ("movie_id")
+  REFERENCES "movies" ("id")
+, CONSTRAINT "fk_rails_6f8a28d404"
+FOREIGN KEY ("genre_id")
+  REFERENCES "genres" ("id")
+)[0m
+  [1m[35m (17.6ms)[0m  [1m[35mCREATE  INDEX  "index_movie_genres_on_movie_id" ON "movie_genres"  ("movie_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_movie_genres_on_genre_id" ON "movie_genres"  ("genre_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200415181600"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (8.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-15 18:37:13.749371"], ["updated_at", "2020-04-15 18:37:13.749371"]]
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5240438866332995745)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (2.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Doug"], ["created_at", "2020-04-15 18:37:20.884500"], ["updated_at", "2020-04-15 18:37:20.884500"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Reese"], ["created_at", "2020-04-15 18:37:20.892048"], ["updated_at", "2020-04-15 18:37:20.892048"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Doug"], ["created_at", "2020-04-15 18:38:33.784753"], ["updated_at", "2020-04-15 18:38:33.784753"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Reese"], ["created_at", "2020-04-15 18:38:33.790034"], ["updated_at", "2020-04-15 18:38:33.790034"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (12.0ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 28], ["name", "Action"], ["created_at", "2020-04-15 18:38:33.801228"], ["updated_at", "2020-04-15 18:38:33.801228"]]
+  [1m[35m (4.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 12], ["name", "Adventure"], ["created_at", "2020-04-15 18:38:33.822048"], ["updated_at", "2020-04-15 18:38:33.822048"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 16], ["name", "Animation"], ["created_at", "2020-04-15 18:38:33.826019"], ["updated_at", "2020-04-15 18:38:33.826019"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 35], ["name", "Comedy"], ["created_at", "2020-04-15 18:38:33.829285"], ["updated_at", "2020-04-15 18:38:33.829285"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 80], ["name", "Crime"], ["created_at", "2020-04-15 18:38:33.832788"], ["updated_at", "2020-04-15 18:38:33.832788"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 99], ["name", "Documentary"], ["created_at", "2020-04-15 18:38:33.835884"], ["updated_at", "2020-04-15 18:38:33.835884"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.4ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 18], ["name", "Drama"], ["created_at", "2020-04-15 18:38:33.839052"], ["updated_at", "2020-04-15 18:38:33.839052"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 10751], ["name", "Family"], ["created_at", "2020-04-15 18:38:33.843652"], ["updated_at", "2020-04-15 18:38:33.843652"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.8ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 14], ["name", "Fantasy"], ["created_at", "2020-04-15 18:38:33.847286"], ["updated_at", "2020-04-15 18:38:33.847286"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.8ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 36], ["name", "History"], ["created_at", "2020-04-15 18:38:33.854068"], ["updated_at", "2020-04-15 18:38:33.854068"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 27], ["name", "Horror"], ["created_at", "2020-04-15 18:38:33.858879"], ["updated_at", "2020-04-15 18:38:33.858879"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 10402], ["name", "Music"], ["created_at", "2020-04-15 18:38:33.862492"], ["updated_at", "2020-04-15 18:38:33.862492"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 9648], ["name", "Mystery"], ["created_at", "2020-04-15 18:38:33.865971"], ["updated_at", "2020-04-15 18:38:33.865971"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 10749], ["name", "Romance"], ["created_at", "2020-04-15 18:38:33.869154"], ["updated_at", "2020-04-15 18:38:33.869154"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 878], ["name", "Science Fiction"], ["created_at", "2020-04-15 18:38:33.872359"], ["updated_at", "2020-04-15 18:38:33.872359"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 10770], ["name", "TV Movie"], ["created_at", "2020-04-15 18:38:33.876671"], ["updated_at", "2020-04-15 18:38:33.876671"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 53], ["name", "Thriller"], ["created_at", "2020-04-15 18:38:33.880375"], ["updated_at", "2020-04-15 18:38:33.880375"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 10752], ["name", "War"], ["created_at", "2020-04-15 18:38:33.884762"], ["updated_at", "2020-04-15 18:38:33.884762"]]
+  [1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 37], ["name", "Western"], ["created_at", "2020-04-15 18:38:33.894809"], ["updated_at", "2020-04-15 18:38:33.894809"]]
+  [1m[35m (5.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (6.9ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster_path", "release_date", "vote_average", "overview", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Tombstone"], ["poster_path", "/yeik25zBwLOlUWIZIiW3KsSH71Q.jpg"], ["release_date", "1993-12-25"], ["vote_average", 7], ["overview", "An outlaw named Guerrero Hernandez is shot in the back and killed whilst attempting to free his half-brother from a small-town prison. Making a deal with the devil, Hernandez returns from the dead to take his revenge."], ["created_at", "2020-04-15 18:38:33.919351"], ["updated_at", "2020-04-15 18:38:33.919351"]]
+  [1m[35m (5.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUserMovie Create (8.4ms)[0m  [1m[32mINSERT INTO "user_movies" ("user_id", "movie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["movie_id", 1], ["created_at", "2020-04-15 18:38:33.976103"], ["updated_at", "2020-04-15 18:38:33.976103"]]
+  [1m[35m (5.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Load (0.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGenre Load (0.3ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 37], ["LIMIT", 1]]
+  [1m[36mMovieGenre Create (13.8ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 1], ["genre_id", 37], ["created_at", "2020-04-15 18:38:34.009229"], ["updated_at", "2020-04-15 18:38:34.009229"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mMovieGenre Create (0.4ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 1], ["genre_id", 28], ["created_at", "2020-04-15 18:38:34.030621"], ["updated_at", "2020-04-15 18:38:34.030621"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Started GET "//user_movies" for ::1 at 2020-04-15 13:38:52 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UserMoviesController#index as HTML
+  [1m[36mUserMovie Load (14.4ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 87ms (Views: 9.0ms | ActiveRecord: 72.2ms | Allocations: 5442)
+
+
+Started GET "/users" for ::1 at 2020-04-15 13:39:05 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (0.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (3.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (16.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (22.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+Completed 200 OK in 162ms (Views: 80.2ms | ActiveRecord: 72.7ms | Allocations: 20201)
+
+
+Started GET "/movies" for ::1 at 2020-04-15 13:39:34 -0500
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (0.6ms)[0m  [1m[34mSELECT "movies".* FROM "movies"[0m
+  ↳ app/controllers/movies_controller.rb:5:in `index'
+  [1m[36mGenre Load (1.3ms)[0m  [1m[34mSELECT "genres".* FROM "genres" INNER JOIN "movie_genres" ON "genres"."id" = "movie_genres"."genre_id" WHERE "movie_genres"."movie_id" = $1[0m  [["movie_id", 1]]
+  ↳ app/controllers/movies_controller.rb:5:in `index'
+Completed 200 OK in 46ms (Views: 20.2ms | ActiveRecord: 26.1ms | Allocations: 7240)
+
+
+Started GET "/users" for ::1 at 2020-04-15 13:39:53 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (0.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (0.6ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (0.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (2.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+Completed 200 OK in 15ms (Views: 10.8ms | ActiveRecord: 3.8ms | Allocations: 5690)
+
+
+Started GET "/users" for ::1 at 2020-04-15 13:40:23 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (6.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (0.5ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (2.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (5.9ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (0.5ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+Completed 200 OK in 27ms (Views: 11.9ms | ActiveRecord: 15.2ms | Allocations: 5690)
+
+
+Started GET "/users" for ::1 at 2020-04-15 13:40:25 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (0.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (3.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (0.7ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+Completed 200 OK in 17ms (Views: 12.4ms | ActiveRecord: 4.9ms | Allocations: 5710)
+
+
+Started GET "/movie_genres" for ::1 at 2020-04-15 13:41:01 -0500
+Processing by MovieGenresController#index as HTML
+  [1m[36mMovieGenre Load (1.0ms)[0m  [1m[34mSELECT "movie_genres".* FROM "movie_genres"[0m
+  ↳ app/controllers/movie_genres_controller.rb:4:in `index'
+Completed 200 OK in 17ms (Views: 12.7ms | ActiveRecord: 3.8ms | Allocations: 3722)
+
+
+Started GET "/genres" for ::1 at 2020-04-15 13:41:08 -0500
+Processing by GenresController#index as HTML
+  [1m[36mGenre Load (3.0ms)[0m  [1m[34mSELECT "genres".* FROM "genres"[0m
+  ↳ app/controllers/genres_controller.rb:5:in `index'
+Completed 200 OK in 9ms (Views: 5.3ms | ActiveRecord: 3.0ms | Allocations: 2705)
+
+
+Started GET "/genres" for ::1 at 2020-04-15 13:41:40 -0500
+Processing by GenresController#index as HTML
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 1416)
+
+
+Started GET "/genres" for ::1 at 2020-04-15 13:41:42 -0500
+Processing by GenresController#index as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 73)
+
+
+Started GET "/genres" for ::1 at 2020-04-15 13:41:46 -0500
+Processing by GenresController#index as HTML
+  [1m[36mGenre Load (0.3ms)[0m  [1m[34mSELECT "genres".* FROM "genres"[0m
+  ↳ app/controllers/genres_controller.rb:5:in `index'
+Completed 200 OK in 11ms (Views: 5.5ms | ActiveRecord: 2.9ms | Allocations: 5855)
+
+
+Started GET "/users" for ::1 at 2020-04-15 13:41:56 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (16.0ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (0.6ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (0.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (9.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+Completed 200 OK in 94ms (Views: 43.8ms | ActiveRecord: 45.9ms | Allocations: 17537)
+
+
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (85.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ShowroomBackend_development"[0m
+  [1m[35m (51.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ShowroomBackend_test"[0m
+  [1m[35m (200.1ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_development" ENCODING = 'unicode'[0m
+  [1m[35m (76.8ms)[0m  [1m[35mCREATE DATABASE "ShowroomBackend_test" ENCODING = 'unicode'[0m
+  [1m[35m (25.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (22.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5240438866332995745)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200412211518)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (28.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412211518"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMovies (20200412212033)
+  [1m[35m (5.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (17.1ms)[0m  [1m[35mCREATE TABLE "movies" ("id" bigserial primary key, "title" character varying, "poster_path" character varying, "release_date" character varying, "vote_average" integer, "overview" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412212033"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUserMovies (20200412230640)
+  [1m[35m (6.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (25.5ms)[0m  [1m[35mCREATE TABLE "user_movies" ("id" bigserial primary key, "user_id" bigint NOT NULL, "movie_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e6836e33a5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_af7366483f"
+FOREIGN KEY ("movie_id")
+  REFERENCES "movies" ("id")
+)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_user_id" ON "user_movies"  ("user_id")[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_user_movies_on_movie_id" ON "user_movies"  ("movie_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200412230640"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateGenres (20200415181234)
+  [1m[35m (5.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (19.3ms)[0m  [1m[35mCREATE TABLE "genres" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (3.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200415181234"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMovieGenres (20200415181600)
+  [1m[35m (12.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (18.4ms)[0m  [1m[35mCREATE TABLE "movie_genres" ("id" bigserial primary key, "movie_id" bigint NOT NULL, "genre_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e153f3c39b"
+FOREIGN KEY ("movie_id")
+  REFERENCES "movies" ("id")
+, CONSTRAINT "fk_rails_6f8a28d404"
+FOREIGN KEY ("genre_id")
+  REFERENCES "genres" ("id")
+)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_movie_genres_on_movie_id" ON "movie_genres"  ("movie_id")[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE  INDEX  "index_movie_genres_on_genre_id" ON "movie_genres"  ("genre_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200415181600"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (7.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-15 19:18:51.637888"], ["updated_at", "2020-04-15 19:18:51.637888"]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(5240438866332995745)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Doug"], ["created_at", "2020-04-15 19:19:37.226892"], ["updated_at", "2020-04-15 19:19:37.226892"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Reese"], ["created_at", "2020-04-15 19:19:37.231526"], ["updated_at", "2020-04-15 19:19:37.231526"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (2.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 28], ["name", "Action"], ["created_at", "2020-04-15 19:19:37.242340"], ["updated_at", "2020-04-15 19:19:37.242340"]]
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 12], ["name", "Adventure"], ["created_at", "2020-04-15 19:19:37.254781"], ["updated_at", "2020-04-15 19:19:37.254781"]]
+  [1m[35m (4.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 16], ["name", "Animation"], ["created_at", "2020-04-15 19:19:37.263604"], ["updated_at", "2020-04-15 19:19:37.263604"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 35], ["name", "Comedy"], ["created_at", "2020-04-15 19:19:37.267356"], ["updated_at", "2020-04-15 19:19:37.267356"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 80], ["name", "Crime"], ["created_at", "2020-04-15 19:19:37.270441"], ["updated_at", "2020-04-15 19:19:37.270441"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.8ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 99], ["name", "Documentary"], ["created_at", "2020-04-15 19:19:37.273404"], ["updated_at", "2020-04-15 19:19:37.273404"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 18], ["name", "Drama"], ["created_at", "2020-04-15 19:19:37.277347"], ["updated_at", "2020-04-15 19:19:37.277347"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 10751], ["name", "Family"], ["created_at", "2020-04-15 19:19:37.280694"], ["updated_at", "2020-04-15 19:19:37.280694"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 14], ["name", "Fantasy"], ["created_at", "2020-04-15 19:19:37.283737"], ["updated_at", "2020-04-15 19:19:37.283737"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 36], ["name", "History"], ["created_at", "2020-04-15 19:19:37.286683"], ["updated_at", "2020-04-15 19:19:37.286683"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 27], ["name", "Horror"], ["created_at", "2020-04-15 19:19:37.289664"], ["updated_at", "2020-04-15 19:19:37.289664"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 10402], ["name", "Music"], ["created_at", "2020-04-15 19:19:37.292896"], ["updated_at", "2020-04-15 19:19:37.292896"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.3ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 9648], ["name", "Mystery"], ["created_at", "2020-04-15 19:19:37.295853"], ["updated_at", "2020-04-15 19:19:37.295853"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 10749], ["name", "Romance"], ["created_at", "2020-04-15 19:19:37.298992"], ["updated_at", "2020-04-15 19:19:37.298992"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 878], ["name", "Science Fiction"], ["created_at", "2020-04-15 19:19:37.302003"], ["updated_at", "2020-04-15 19:19:37.302003"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 10770], ["name", "TV Movie"], ["created_at", "2020-04-15 19:19:37.304919"], ["updated_at", "2020-04-15 19:19:37.304919"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 53], ["name", "Thriller"], ["created_at", "2020-04-15 19:19:37.307991"], ["updated_at", "2020-04-15 19:19:37.307991"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 10752], ["name", "War"], ["created_at", "2020-04-15 19:19:37.311355"], ["updated_at", "2020-04-15 19:19:37.311355"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Create (0.2ms)[0m  [1m[32mINSERT INTO "genres" ("id", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["id", 37], ["name", "Western"], ["created_at", "2020-04-15 19:19:37.316070"], ["updated_at", "2020-04-15 19:19:37.316070"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (2.2ms)[0m  [1m[32mINSERT INTO "movies" ("title", "poster_path", "release_date", "vote_average", "overview", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Tombstone"], ["poster_path", "/yeik25zBwLOlUWIZIiW3KsSH71Q.jpg"], ["release_date", "1993-12-25"], ["vote_average", 7], ["overview", "An outlaw named Guerrero Hernandez is shot in the back and killed whilst attempting to free his half-brother from a small-town prison. Making a deal with the devil, Hernandez returns from the dead to take his revenge."], ["created_at", "2020-04-15 19:19:37.329819"], ["updated_at", "2020-04-15 19:19:37.329819"]]
+  [1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMovie Load (0.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUserMovie Create (8.0ms)[0m  [1m[32mINSERT INTO "user_movies" ("user_id", "movie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["movie_id", 1], ["created_at", "2020-04-15 19:19:37.379727"], ["updated_at", "2020-04-15 19:19:37.379727"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 37], ["LIMIT", 1]]
+  [1m[36mMovieGenre Create (1.9ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 1], ["genre_id", 37], ["created_at", "2020-04-15 19:19:37.416552"], ["updated_at", "2020-04-15 19:19:37.416552"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mMovieGenre Create (0.4ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 1], ["genre_id", 28], ["created_at", "2020-04-15 19:19:37.424478"], ["updated_at", "2020-04-15 19:19:37.424478"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/users" for ::1 at 2020-04-15 14:19:54 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (5.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (8.9ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (0.7ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+Completed 200 OK in 97ms (Views: 43.8ms | ActiveRecord: 42.4ms | Allocations: 19644)
+
+
