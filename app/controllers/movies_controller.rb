@@ -4,7 +4,6 @@ class MoviesController < ApplicationController
         @movies = Movie.all
         render json: @movies
     end
-<<<<<<< HEAD
 
     def create
         @movie = Movie.create(movie_params)
@@ -16,8 +15,6 @@ class MoviesController < ApplicationController
     def movie_params
         params.require(:movie).permit(:id, :title, :poster_path, :release_date, :vote_average, :overview, :genre_ids)
     end
-=======
->>>>>>> master
 
 end
 
