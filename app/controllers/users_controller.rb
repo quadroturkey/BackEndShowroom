@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @users = User.all
     if @users
       render json: {
-      users: @users
+      users: @users, inclues: :movies
     }
     else
       render json: {
