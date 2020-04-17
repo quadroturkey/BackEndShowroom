@@ -2926,3 +2926,1441 @@ Processing by UsersController#index as HTML
 Completed 200 OK in 97ms (Views: 43.8ms | ActiveRecord: 42.4ms | Allocations: 19644)
 
 
+  [1m[36mUserMovie Load (7.6ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies" ORDER BY "user_movies"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "//users" for ::1 at 2020-04-17 09:46:04 -0500
+  [1m[35m (31.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (10.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5:in `index'
+Started GET "/user_movies" for ::1 at 2020-04-17 09:46:06 -0500
+  [1m[36mMovie Load (29.5ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+  [1m[36mMovie Load (130.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:5:in `index'
+Completed 200 OK in 802ms (Views: 247.2ms | ActiveRecord: 506.5ms | Allocations: 21497)
+
+
+Processing by UserMoviesController#index as HTML
+  [1m[36mUserMovie Load (56.0ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 228ms (Views: 13.1ms | ActiveRecord: 214.4ms | Allocations: 4200)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 09:46:12 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (5.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (10.0ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 318ms (Views: 87.5ms | ActiveRecord: 120.0ms | Allocations: 2872)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 09:46:17 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (53.0ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 89ms (Views: 36.0ms | ActiveRecord: 53.0ms | Allocations: 1404)
+
+
+Started DELETE "/user_movies/3" for ::1 at 2020-04-17 09:46:17 -0500
+  
+AbstractController::ActionNotFound (The action 'destroy' could not be found for UserMoviesController):
+  
+actionpack (6.0.2.2) lib/abstract_controller/base.rb:131:in `process'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:51:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.2) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.2) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/users/1" for ::1 at 2020-04-17 09:47:13 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (77.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (68.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 155ms (Views: 6.3ms | ActiveRecord: 146.0ms | Allocations: 2669)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 09:47:38 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (13.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (12.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 34ms (Views: 5.5ms | ActiveRecord: 26.1ms | Allocations: 2670)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 09:47:55 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (11.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (289.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 308ms (Views: 5.8ms | ActiveRecord: 300.7ms | Allocations: 2670)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 09:48:13 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (18.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (18.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 44ms (Views: 4.8ms | ActiveRecord: 37.6ms | Allocations: 2670)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 09:48:35 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (38.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (6.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 51ms (Views: 4.2ms | ActiveRecord: 44.5ms | Allocations: 2687)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 09:48:41 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (282.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (88.7ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 378ms (Views: 5.1ms | ActiveRecord: 371.3ms | Allocations: 2671)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 09:48:48 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (0.5ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 4.7ms | ActiveRecord: 0.5ms | Allocations: 1386)
+
+
+Started DELETE "/user_movies/3" for ::1 at 2020-04-17 09:48:48 -0500
+  
+AbstractController::ActionNotFound (The action 'destroy' could not be found for UserMoviesController):
+  
+actionpack (6.0.2.2) lib/abstract_controller/base.rb:131:in `process'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:51:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.2) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.2) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/users/1" for ::1 at 2020-04-17 09:48:48 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (5.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (14.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 27ms (Views: 4.7ms | ActiveRecord: 19.7ms | Allocations: 2670)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 09:48:55 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (285.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (94.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 385ms (Views: 4.6ms | ActiveRecord: 379.2ms | Allocations: 2670)
+
+
+Started GET "/user_movies" for ::1 at 2020-04-17 09:49:00 -0500
+Processing by UserMoviesController#index as HTML
+  [1m[36mUserMovie Load (50.4ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 112ms (Views: 61.3ms | ActiveRecord: 50.4ms | Allocations: 1387)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 09:49:15 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (0.8ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.8ms | Allocations: 1386)
+
+
+Started DELETE "/user_movies/3" for ::1 at 2020-04-17 09:49:15 -0500
+  
+AbstractController::ActionNotFound (The action 'destroy' could not be found for UserMoviesController):
+  
+actionpack (6.0.2.2) lib/abstract_controller/base.rb:131:in `process'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:51:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.2) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.2) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/users/1" for ::1 at 2020-04-17 09:49:15 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (10.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (10.7ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 44ms (Views: 19.9ms | ActiveRecord: 21.3ms | Allocations: 2670)
+
+
+Started GET "/user_movies/3" for ::1 at 2020-04-17 09:49:36 -0500
+Processing by UserMoviesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUserMovie Load (62.8ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies" WHERE "user_movies"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:14:in `show'
+Completed 200 OK in 71ms (Views: 0.5ms | ActiveRecord: 62.8ms | Allocations: 748)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 09:50:31 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (124.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (289.6ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 421ms (Views: 4.8ms | ActiveRecord: 414.0ms | Allocations: 2671)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 09:50:36 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (2.0ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 3.2ms | ActiveRecord: 2.0ms | Allocations: 1386)
+
+
+Started DELETE "/user_movies/3" for ::1 at 2020-04-17 09:50:36 -0500
+  
+AbstractController::ActionNotFound (The action 'destroy' could not be found for UserMoviesController):
+  
+actionpack (6.0.2.2) lib/abstract_controller/base.rb:131:in `process'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:51:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.2) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.2) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/user_movies/" for ::1 at 2020-04-17 09:50:41 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (2.7ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 13ms (Views: 9.7ms | ActiveRecord: 2.7ms | Allocations: 1385)
+
+
+Started DELETE "/user_movies/4" for ::1 at 2020-04-17 09:50:41 -0500
+  
+AbstractController::ActionNotFound (The action 'destroy' could not be found for UserMoviesController):
+  
+actionpack (6.0.2.2) lib/abstract_controller/base.rb:131:in `process'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:51:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.2) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.2) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/user_movies/4" for ::1 at 2020-04-17 09:51:08 -0500
+Processing by UserMoviesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUserMovie Load (28.1ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies" WHERE "user_movies"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:14:in `show'
+Completed 200 OK in 30ms (Views: 0.2ms | ActiveRecord: 28.1ms | Allocations: 641)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 09:53:44 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (480.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (41.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 535ms (Views: 11.0ms | ActiveRecord: 521.7ms | Allocations: 2673)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 09:53:52 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (11.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 22ms (Views: 7.6ms | ActiveRecord: 12.6ms | Allocations: 2670)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 09:53:58 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (0.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 6ms (Views: 3.6ms | ActiveRecord: 0.5ms | Allocations: 2670)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 09:54:07 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (36.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (30.0ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 73ms (Views: 5.4ms | ActiveRecord: 66.0ms | Allocations: 2670)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 09:54:17 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (1.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 9ms (Views: 4.1ms | ActiveRecord: 2.7ms | Allocations: 2670)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 09:54:23 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (17.4ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 22ms (Views: 4.3ms | ActiveRecord: 17.4ms | Allocations: 1386)
+
+
+Started DELETE "/user_movies/3" for ::1 at 2020-04-17 09:54:23 -0500
+  
+AbstractController::ActionNotFound (The action 'destroy' could not be found for UserMoviesController):
+  
+actionpack (6.0.2.2) lib/abstract_controller/base.rb:131:in `process'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:51:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.2) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.2) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/users/1" for ::1 at 2020-04-17 09:54:46 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (62.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 83ms (Views: 7.8ms | ActiveRecord: 66.2ms | Allocations: 2670)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 09:54:51 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (9.2ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 12ms (Views: 3.0ms | ActiveRecord: 9.2ms | Allocations: 1386)
+
+
+Started DELETE "/user_movies/" for ::1 at 2020-04-17 09:54:51 -0500
+  
+ActionController::RoutingError (No route matches [DELETE] "/user_movies"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/users/1" for ::1 at 2020-04-17 09:55:11 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (8.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (12.0ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 34ms (Views: 8.5ms | ActiveRecord: 20.7ms | Allocations: 2669)
+
+
+DEPRECATION WARNING: Using `bin/rake routes` is deprecated and will be removed in Rails 6.1. Use `bin/rails routes` instead.
+ (called from load at /Users/dougharrison/.rvm/gems/ruby-2.6.1/bin/rake:23)
+Started GET "/routes" for ::1 at 2020-04-17 09:58:28 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/routes"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/users/1" for ::1 at 2020-04-17 09:58:55 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (16.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (1.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 48ms (Views: 15.9ms | ActiveRecord: 17.5ms | Allocations: 2722)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 09:59:03 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (82.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 97ms (Views: 3.9ms | ActiveRecord: 86.2ms | Allocations: 2670)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 09:59:11 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (0.7ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 10ms (Views: 8.6ms | ActiveRecord: 0.7ms | Allocations: 1388)
+
+
+Started DELETE "/user_movie/3" for ::1 at 2020-04-17 09:59:11 -0500
+  
+ActionController::RoutingError (No route matches [DELETE] "/user_movie/3"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/user_movies/3" for ::1 at 2020-04-17 09:59:38 -0500
+Processing by UserMoviesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUserMovie Load (3.5ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies" WHERE "user_movies"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:14:in `show'
+Completed 200 OK in 10ms (Views: 0.4ms | ActiveRecord: 3.5ms | Allocations: 641)
+
+
+Started GET "/routes" for ::1 at 2020-04-17 09:59:43 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/routes"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/users/1" for ::1 at 2020-04-17 10:00:08 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (22.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 28ms (Views: 3.2ms | ActiveRecord: 22.9ms | Allocations: 2669)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:00:29 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (36.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 564ms (Views: 84.3ms | ActiveRecord: 405.7ms | Allocations: 15015)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 10:00:33 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (0.3ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 15ms (Views: 10.2ms | ActiveRecord: 4.6ms | Allocations: 4078)
+
+
+Started DELETE "/user_movies/3" for ::1 at 2020-04-17 10:00:33 -0500
+Processing by UserMoviesController#destroy as JSON
+  Parameters: {"id"=>"3", "user_movie"=>{}}
+  [1m[36mUserMovie Load (2.2ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies" WHERE "user_movies"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:19:in `destroy'
+Completed 500 Internal Server Error in 94ms (ActiveRecord: 2.2ms | Allocations: 2240)
+
+
+  
+NoMethodError (undefined method `destory' for #<UserMovie:0x00007ff13c5d4118>
+Did you mean?  destroy):
+  
+app/controllers/user_movies_controller.rb:20:in `destroy'
+Started GET "//user_movies" for ::1 at 2020-04-17 10:00:43 -0500
+Processing by UserMoviesController#index as HTML
+  [1m[36mUserMovie Load (0.5ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.5ms | Allocations: 1383)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:01:16 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (3.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (1.7ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 649ms (Views: 67.2ms | ActiveRecord: 449.3ms | Allocations: 14847)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 10:01:21 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (3.4ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 8.5ms | ActiveRecord: 7.1ms | Allocations: 4078)
+
+
+Started DELETE "/user_movies/3" for ::1 at 2020-04-17 10:01:22 -0500
+Processing by UserMoviesController#destroy as JSON
+  Parameters: {"id"=>"3", "user_movie"=>{}}
+  [1m[36mUserMovie Load (2.7ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies" WHERE "user_movies"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:19:in `destroy'
+  [1m[35m (9.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+  [1m[36mUserMovie Destroy (75.6ms)[0m  [1m[31mDELETE FROM "user_movies" WHERE "user_movies"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+  [1m[35m (59.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+Completed 204 No Content in 157ms (ActiveRecord: 146.9ms | Allocations: 2326)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:01:36 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (177.5ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 184ms (Views: 3.9ms | ActiveRecord: 177.9ms | Allocations: 2513)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:02:12 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (60.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (217.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 295ms (Views: 10.3ms | ActiveRecord: 277.3ms | Allocations: 2514)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 10:02:18 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (0.9ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 7ms (Views: 5.4ms | ActiveRecord: 0.9ms | Allocations: 1284)
+
+
+Started DELETE "/user_movies/4" for ::1 at 2020-04-17 10:02:18 -0500
+Processing by UserMoviesController#destroy as JSON
+  Parameters: {"id"=>"4", "user_movie"=>{}}
+  [1m[36mUserMovie Load (68.3ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies" WHERE "user_movies"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:19:in `destroy'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+  [1m[36mUserMovie Destroy (57.4ms)[0m  [1m[31mDELETE FROM "user_movies" WHERE "user_movies"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+Completed 204 No Content in 146ms (ActiveRecord: 130.7ms | Allocations: 2181)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:03:11 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (120.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (97.0ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 224ms (Views: 4.6ms | ActiveRecord: 217.6ms | Allocations: 2356)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:04:37 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (35.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (9.0ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 611ms (Views: 43.7ms | ActiveRecord: 544.1ms | Allocations: 14533)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:04:59 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (402.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (8.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 419ms (Views: 5.3ms | ActiveRecord: 411.0ms | Allocations: 2356)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:05:05 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (46.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (49.7ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 103ms (Views: 4.8ms | ActiveRecord: 96.4ms | Allocations: 2356)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 10:05:10 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (0.9ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 28ms (Views: 13.6ms | ActiveRecord: 13.6ms | Allocations: 3909)
+
+
+Started DELETE "/user_movies/6" for ::1 at 2020-04-17 10:05:10 -0500
+Processing by UserMoviesController#destroy as JSON
+  Parameters: {"id"=>"6", "user_movie"=>{}}
+  [1m[36mUserMovie Load (0.7ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies" WHERE "user_movies"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:19:in `destroy'
+  [1m[35m (71.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+  [1m[36mUserMovie Destroy (59.0ms)[0m  [1m[31mDELETE FROM "user_movies" WHERE "user_movies"."id" = $1[0m  [["id", 6]]
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+  [1m[35m (49.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+Completed 200 OK in 197ms (Views: 0.5ms | ActiveRecord: 180.5ms | Allocations: 2421)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:05:35 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (38.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (6.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 52ms (Views: 4.2ms | ActiveRecord: 45.0ms | Allocations: 2198)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:05:41 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (31.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (17.5ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 57ms (Views: 3.9ms | ActiveRecord: 49.3ms | Allocations: 2198)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 10:05:44 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (60.8ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 65ms (Views: 3.9ms | ActiveRecord: 60.8ms | Allocations: 1079)
+
+
+Started DELETE "/user_movies/5" for ::1 at 2020-04-17 10:05:44 -0500
+Processing by UserMoviesController#destroy as JSON
+  Parameters: {"id"=>"5", "user_movie"=>{}}
+  [1m[36mUserMovie Load (8.3ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies" WHERE "user_movies"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:19:in `destroy'
+  [1m[35m (15.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+  [1m[36mUserMovie Destroy (2.8ms)[0m  [1m[31mDELETE FROM "user_movies" WHERE "user_movies"."id" = $1[0m  [["id", 5]]
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+  [1m[35m (14.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+Completed 200 OK in 55ms (Views: 2.7ms | ActiveRecord: 40.9ms | Allocations: 2317)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:06:33 -0500
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (0.9ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 188ms (Views: 88.4ms | ActiveRecord: 52.4ms | Allocations: 18492)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 10:06:37 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (66.5ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 129ms (Views: 24.9ms | ActiveRecord: 103.2ms | Allocations: 3762)
+
+
+Started DELETE "/user_movies/2" for ::1 at 2020-04-17 10:06:37 -0500
+Processing by UserMoviesController#destroy as JSON
+  Parameters: {"id"=>"2", "user_movie"=>{}}
+  [1m[36mUserMovie Load (0.4ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies" WHERE "user_movies"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:19:in `destroy'
+  [1m[35m (40.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+  [1m[36mUserMovie Destroy (4.7ms)[0m  [1m[31mDELETE FROM "user_movies" WHERE "user_movies"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+  [1m[35m (72.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+Completed 200 OK in 129ms (Views: 0.5ms | ActiveRecord: 117.9ms | Allocations: 2463)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:08:23 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (88.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (20.6ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 115ms (Views: 3.8ms | ActiveRecord: 109.3ms | Allocations: 1900)
+
+
+Started POST "/movies" for ::1 at 2020-04-17 10:08:29 -0500
+Started POST "/user_movies" for ::1 at 2020-04-17 10:08:29 -0500
+Started POST "/movie_genres" for ::1 at 2020-04-17 10:08:29 -0500
+Started POST "/movie_genres" for ::1 at 2020-04-17 10:08:29 -0500
+Started POST "/movie_genres" for ::1 at 2020-04-17 10:08:29 -0500
+Processing by MoviesController#create as JSON
+  Parameters: {"id"=>454626, "title"=>"Sonic the Hedgehog", "poster_path"=>"/aQvJ5WPzZgYVDrxLX4R6cLJCEaQ.jpg", "release_date"=>"2020-02-12", "vote_average"=>7.5, "overview"=>"Based on the global blockbuster videogame franchise from Sega, Sonic the Hedgehog tells the story of the world’s speediest hedgehog as he embraces his new home on Earth. In this live-action adventure comedy, Sonic and his new best friend team up to defend the planet from the evil genius Dr. Robotnik and his plans for world domination.", "movie"=>{"id"=>454626, "title"=>"Sonic the Hedgehog", "poster_path"=>"/aQvJ5WPzZgYVDrxLX4R6cLJCEaQ.jpg", "release_date"=>"2020-02-12", "vote_average"=>7.5, "overview"=>"Based on the global blockbuster videogame franchise from Sega, Sonic the Hedgehog tells the story of the world’s speediest hedgehog as he embraces his new home on Earth. In this live-action adventure comedy, Sonic and his new best friend team up to defend the planet from the evil genius Dr. Robotnik and his plans for world domination."}}
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/movies_controller.rb:9:in `create'
+  [1m[36mMovie Create (52.7ms)[0m  [1m[32mINSERT INTO "movies" ("id", "title", "poster_path", "release_date", "vote_average", "overview", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["id", 454626], ["title", "Sonic the Hedgehog"], ["poster_path", "/aQvJ5WPzZgYVDrxLX4R6cLJCEaQ.jpg"], ["release_date", "2020-02-12"], ["vote_average", 7], ["overview", "Based on the global blockbuster videogame franchise from Sega, Sonic the Hedgehog tells the story of the world’s speediest hedgehog as he embraces his new home on Earth. In this live-action adventure comedy, Sonic and his new best friend team up to defend the planet from the evil genius Dr. Robotnik and his plans for world domination."], ["created_at", "2020-04-17 15:08:29.760960"], ["updated_at", "2020-04-17 15:08:29.760960"]]
+  ↳ app/controllers/movies_controller.rb:9:in `create'
+  [1m[35m (120.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/movies_controller.rb:9:in `create'
+Completed 204 No Content in 189ms (ActiveRecord: 174.2ms | Allocations: 2915)
+
+
+Started POST "/movie_genres" for ::1 at 2020-04-17 10:08:30 -0500
+Processing by MovieGenresController#create as JSON
+  Parameters: {"movie_genres"=>{"movie_id"=>454626, "genre_id"=>10751}, "movie_genre"=>{}}
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovie Load (2.7ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 454626], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Processing by MovieGenresController#create as JSON
+  Parameters: {"movie_genres"=>{"movie_id"=>454626, "genre_id"=>28}, "movie_genre"=>{}}
+  [1m[36mGenre Load (50.3ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 10751], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (20.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Processing by MovieGenresController#create as JSON
+  Parameters: {"movie_genres"=>{"movie_id"=>454626, "genre_id"=>35}, "movie_genre"=>{}}
+Processing by MovieGenresController#create as JSON
+  Parameters: {"movie_genres"=>{"movie_id"=>454626, "genre_id"=>878}, "movie_genre"=>{}}
+  [1m[35m (18.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Processing by UserMoviesController#create as JSON
+  Parameters: {"user_movies"=>{"user_id"=>1, "movie_id"=>454626}, "user_movie"=>{}}
+  [1m[36mMovieGenre Create (41.1ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 454626], ["genre_id", 10751], ["created_at", "2020-04-17 15:08:30.344553"], ["updated_at", "2020-04-17 15:08:30.344553"]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (4.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Completed 204 No Content in 207ms (ActiveRecord: 122.4ms | Allocations: 23407)
+
+
+  [1m[35m (136.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovie Load (36.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 454626], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mGenre Load (5.7ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovieGenre Create (9.7ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 454626], ["genre_id", 35], ["created_at", "2020-04-17 15:08:30.572557"], ["updated_at", "2020-04-17 15:08:30.572557"]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovie Load (78.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 454626], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (206.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  [1m[36mMovie Load (3.5ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 454626], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mGenre Load (10.9ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mGenre Load (2.9ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 878], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovie Load (7.7ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 454626], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  [1m[36mMovieGenre Create (9.7ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 454626], ["genre_id", 28], ["created_at", "2020-04-17 15:08:30.626397"], ["updated_at", "2020-04-17 15:08:30.626397"]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovieGenre Create (5.9ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 454626], ["genre_id", 878], ["created_at", "2020-04-17 15:08:30.630877"], ["updated_at", "2020-04-17 15:08:30.630877"]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mUserMovie Create (3.1ms)[0m  [1m[32mINSERT INTO "user_movies" ("user_id", "movie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["movie_id", 454626], ["created_at", "2020-04-17 15:08:30.635150"], ["updated_at", "2020-04-17 15:08:30.635150"]]
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  [1m[35m (135.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Completed 204 No Content in 367ms (ActiveRecord: 335.5ms | Allocations: 19377)
+
+
+  [1m[35m (103.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (101.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (100.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+Completed 204 No Content in 420ms (ActiveRecord: 238.8ms | Allocations: 27066)
+
+
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Completed 204 No Content in 378ms (ActiveRecord: 353.2ms | Allocations: 19265)
+
+
+Completed 204 No Content in 367ms (ActiveRecord: 324.9ms | Allocations: 17298)
+
+
+Started POST "/movies" for ::1 at 2020-04-17 10:08:31 -0500
+Started POST "/user_movies" for ::1 at 2020-04-17 10:08:31 -0500
+Started POST "/movie_genres" for ::1 at 2020-04-17 10:08:31 -0500
+Started POST "/movie_genres" for ::1 at 2020-04-17 10:08:31 -0500
+Processing by UserMoviesController#create as JSON
+  Parameters: {"user_movies"=>{"user_id"=>1, "movie_id"=>338762}, "user_movie"=>{}}
+Processing by MovieGenresController#create as JSON
+  Parameters: {"movie_genres"=>{"movie_id"=>338762, "genre_id"=>878}, "movie_genre"=>{}}
+Processing by MoviesController#create as JSON
+  Parameters: {"id"=>338762, "title"=>"Bloodshot", "poster_path"=>"/8WUVHemHFH2ZIP6NWkwlHWsyrEL.jpg", "release_date"=>"2020-03-05", "vote_average"=>7.2, "overview"=>"After he and his wife are murdered, marine Ray Garrison is resurrected by a team of scientists. Enhanced with nanotechnology, he becomes a superhuman, biotech killing machine—'Bloodshot'. As Ray first trains with fellow super-soldiers, he cannot recall anything from his former life. But when his memories flood back and he remembers the man that killed both him and his wife, he breaks out of the facility to get revenge, only to discover that there's more to the conspiracy than he thought.", "movie"=>{"id"=>338762, "title"=>"Bloodshot", "poster_path"=>"/8WUVHemHFH2ZIP6NWkwlHWsyrEL.jpg", "release_date"=>"2020-03-05", "vote_average"=>7.2, "overview"=>"After he and his wife are murdered, marine Ray Garrison is resurrected by a team of scientists. Enhanced with nanotechnology, he becomes a superhuman, biotech killing machine—'Bloodshot'. As Ray first trains with fellow super-soldiers, he cannot recall anything from his former life. But when his memories flood back and he remembers the man that killed both him and his wife, he breaks out of the facility to get revenge, only to discover that there's more to the conspiracy than he thought."}}
+Processing by MovieGenresController#create as JSON
+  Parameters: {"movie_genres"=>{"movie_id"=>338762, "genre_id"=>28}, "movie_genre"=>{}}
+  [1m[35m (26.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (65.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  [1m[36mUser Load (4.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  [1m[35m (88.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (82.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Load (55.9ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 338762], ["LIMIT", 1]]
+  ↳ app/controllers/movies_controller.rb:9:in `create'
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovie Load (40.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 338762], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  [1m[36mMovie Create (32.2ms)[0m  [1m[32mINSERT INTO "movies" ("id", "title", "poster_path", "release_date", "vote_average", "overview", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["id", 338762], ["title", "Bloodshot"], ["poster_path", "/8WUVHemHFH2ZIP6NWkwlHWsyrEL.jpg"], ["release_date", "2020-03-05"], ["vote_average", 7], ["overview", "After he and his wife are murdered, marine Ray Garrison is resurrected by a team of scientists. Enhanced with nanotechnology, he becomes a superhuman, biotech killing machine—'Bloodshot'. As Ray first trains with fellow super-soldiers, he cannot recall anything from his former life. But when his memories flood back and he remembers the man that killed both him and his wife, he breaks out of the facility to get revenge, only to discover that there's more to the conspiracy than he thought."], ["created_at", "2020-04-17 15:08:31.808666"], ["updated_at", "2020-04-17 15:08:31.808666"]]
+  ↳ app/controllers/movies_controller.rb:9:in `create'
+  [1m[36mMovie Load (87.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 338762], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (64.0ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+Completed 204 No Content in 209ms (ActiveRecord: 174.5ms | Allocations: 13543)
+
+
+  [1m[36mGenre Load (183.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mGenre Load (112.3ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 878], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (179.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/movies_controller.rb:9:in `create'
+  [1m[35m (7.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Completed 204 No Content in 326ms (ActiveRecord: 296.1ms | Allocations: 16469)
+
+
+Completed 204 No Content in 317ms (ActiveRecord: 293.3ms | Allocations: 14722)
+
+
+  [1m[35m (12.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Completed 204 No Content in 369ms (ActiveRecord: 278.0ms | Allocations: 16061)
+
+
+Started POST "/movies" for ::1 at 2020-04-17 10:08:33 -0500
+Started POST "/user_movies" for ::1 at 2020-04-17 10:08:33 -0500
+Started POST "/movie_genres" for ::1 at 2020-04-17 10:08:33 -0500
+Started POST "/movie_genres" for ::1 at 2020-04-17 10:08:33 -0500
+Started POST "/movie_genres" for ::1 at 2020-04-17 10:08:33 -0500
+Processing by MoviesController#create as JSON
+  Parameters: {"id"=>446893, "title"=>"Trolls World Tour", "poster_path"=>"/7W0G3YECgDAfnuiHG91r8WqgIOe.jpg", "release_date"=>"2020-03-12", "vote_average"=>7.7, "overview"=>"Queen Poppy and Branch make a surprising discovery — there are other Troll worlds beyond their own, and their distinct differences create big clashes between these various tribes. When a mysterious threat puts all of the Trolls across the land in danger, Poppy, Branch, and their band of friends must embark on an epic quest to create harmony among the feuding Trolls to unite them against certain doom.", "movie"=>{"id"=>446893, "title"=>"Trolls World Tour", "poster_path"=>"/7W0G3YECgDAfnuiHG91r8WqgIOe.jpg", "release_date"=>"2020-03-12", "vote_average"=>7.7, "overview"=>"Queen Poppy and Branch make a surprising discovery — there are other Troll worlds beyond their own, and their distinct differences create big clashes between these various tribes. When a mysterious threat puts all of the Trolls across the land in danger, Poppy, Branch, and their band of friends must embark on an epic quest to create harmony among the feuding Trolls to unite them against certain doom."}}
+  [1m[35m (47.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/movies_controller.rb:9:in `create'
+Processing by UserMoviesController#create as JSON
+  Parameters: {"user_movies"=>{"user_id"=>1, "movie_id"=>446893}, "user_movie"=>{}}
+Processing by MovieGenresController#create as JSON
+  Parameters: {"movie_genres"=>{"movie_id"=>446893, "genre_id"=>16}, "movie_genre"=>{}}
+Processing by MovieGenresController#create as JSON
+  Parameters: {"movie_genres"=>{"movie_id"=>446893, "genre_id"=>35}, "movie_genre"=>{}}
+Processing by MovieGenresController#create as JSON
+  Parameters: {"movie_genres"=>{"movie_id"=>446893, "genre_id"=>14}, "movie_genre"=>{}}
+  [1m[36mMovie Create (33.4ms)[0m  [1m[32mINSERT INTO "movies" ("id", "title", "poster_path", "release_date", "vote_average", "overview", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["id", 446893], ["title", "Trolls World Tour"], ["poster_path", "/7W0G3YECgDAfnuiHG91r8WqgIOe.jpg"], ["release_date", "2020-03-12"], ["vote_average", 7], ["overview", "Queen Poppy and Branch make a surprising discovery — there are other Troll worlds beyond their own, and their distinct differences create big clashes between these various tribes. When a mysterious threat puts all of the Trolls across the land in danger, Poppy, Branch, and their band of friends must embark on an epic quest to create harmony among the feuding Trolls to unite them against certain doom."], ["created_at", "2020-04-17 15:08:33.838882"], ["updated_at", "2020-04-17 15:08:33.838882"]]
+  ↳ app/controllers/movies_controller.rb:9:in `create'
+  [1m[35m (81.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (83.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (74.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (73.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  [1m[35m (80.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/movies_controller.rb:9:in `create'
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Completed 204 No Content in 175ms (ActiveRecord: 160.6ms | Allocations: 9071)
+
+
+Started POST "/movie_genres" for ::1 at 2020-04-17 10:08:34 -0500
+  [1m[36mMovie Load (47.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 446893], ["LIMIT", 1]]
+  [1m[36mUser Load (43.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovie Load (55.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 446893], ["LIMIT", 1]]
+  [1m[36mMovie Load (50.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 446893], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Processing by MovieGenresController#create as JSON
+  Parameters: {"movie_genres"=>{"movie_id"=>446893, "genre_id"=>10402}, "movie_genre"=>{}}
+  [1m[36mMovie Load (34.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 446893], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  [1m[36mGenre Load (29.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[35m (24.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGenre Load (26.5ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mGenre Load (32.8ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mUserMovie Create (9.7ms)[0m  [1m[32mINSERT INTO "user_movies" ("user_id", "movie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["movie_id", 446893], ["created_at", "2020-04-17 15:08:34.091407"], ["updated_at", "2020-04-17 15:08:34.091407"]]
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovie Load (15.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 446893], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovieGenre Create (25.1ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 446893], ["genre_id", 14], ["created_at", "2020-04-17 15:08:34.099482"], ["updated_at", "2020-04-17 15:08:34.099482"]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (22.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGenre Load (10.5ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 10402], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+Completed 204 No Content in 230ms (ActiveRecord: 193.6ms | Allocations: 20733)
+
+
+  [1m[36mMovieGenre Create (24.7ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 446893], ["genre_id", 35], ["created_at", "2020-04-17 15:08:34.105036"], ["updated_at", "2020-04-17 15:08:34.105036"]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Started POST "/movie_genres" for ::1 at 2020-04-17 10:08:34 -0500
+  [1m[36mMovieGenre Create (59.9ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 446893], ["genre_id", 16], ["created_at", "2020-04-17 15:08:34.101158"], ["updated_at", "2020-04-17 15:08:34.101158"]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (37.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Completed 204 No Content in 258ms (ActiveRecord: 217.4ms | Allocations: 21773)
+
+
+  [1m[36mMovieGenre Create (60.7ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 446893], ["genre_id", 10402], ["created_at", "2020-04-17 15:08:34.130955"], ["updated_at", "2020-04-17 15:08:34.130955"]]
+Processing by MovieGenresController#create as JSON
+  Parameters: {"movie_genres"=>{"movie_id"=>446893, "genre_id"=>10751}, "movie_genre"=>{}}
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (3.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (61.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMovie Load (1.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 446893], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (45.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Completed 204 No Content in 303ms (ActiveRecord: 242.0ms | Allocations: 26573)
+
+
+  [1m[35m (11.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Completed 204 No Content in 307ms (ActiveRecord: 266.8ms | Allocations: 27489)
+
+
+Completed 204 No Content in 152ms (ActiveRecord: 123.0ms | Allocations: 16894)
+
+
+  [1m[36mGenre Load (46.9ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 10751], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovieGenre Create (6.5ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 446893], ["genre_id", 10751], ["created_at", "2020-04-17 15:08:34.258555"], ["updated_at", "2020-04-17 15:08:34.258555"]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Completed 204 No Content in 80ms (ActiveRecord: 59.8ms | Allocations: 7270)
+
+
+Started POST "/movie_genres" for ::1 at 2020-04-17 10:08:34 -0500
+Processing by MovieGenresController#create as JSON
+  Parameters: {"movie_genres"=>{"movie_id"=>446893, "genre_id"=>12}, "movie_genre"=>{}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 446893], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mGenre Load (29.0ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovieGenre Create (12.6ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 446893], ["genre_id", 12], ["created_at", "2020-04-17 15:08:34.420568"], ["updated_at", "2020-04-17 15:08:34.420568"]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (7.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Completed 204 No Content in 60ms (ActiveRecord: 49.8ms | Allocations: 4396)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:08:37 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (1.9ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 70ms (Views: 63.3ms | ActiveRecord: 5.4ms | Allocations: 2200)
+
+
+Started POST "/movies" for ::1 at 2020-04-17 10:08:45 -0500
+Started POST "/user_movies" for ::1 at 2020-04-17 10:08:45 -0500
+Started POST "/movie_genres" for ::1 at 2020-04-17 10:08:45 -0500
+Started POST "/movie_genres" for ::1 at 2020-04-17 10:08:45 -0500
+Processing by MoviesController#create as JSON
+  Parameters: {"id"=>338762, "title"=>"Bloodshot", "poster_path"=>"/8WUVHemHFH2ZIP6NWkwlHWsyrEL.jpg", "release_date"=>"2020-03-05", "vote_average"=>7.2, "overview"=>"After he and his wife are murdered, marine Ray Garrison is resurrected by a team of scientists. Enhanced with nanotechnology, he becomes a superhuman, biotech killing machine—'Bloodshot'. As Ray first trains with fellow super-soldiers, he cannot recall anything from his former life. But when his memories flood back and he remembers the man that killed both him and his wife, he breaks out of the facility to get revenge, only to discover that there's more to the conspiracy than he thought.", "movie"=>{"id"=>338762, "title"=>"Bloodshot", "poster_path"=>"/8WUVHemHFH2ZIP6NWkwlHWsyrEL.jpg", "release_date"=>"2020-03-05", "vote_average"=>7.2, "overview"=>"After he and his wife are murdered, marine Ray Garrison is resurrected by a team of scientists. Enhanced with nanotechnology, he becomes a superhuman, biotech killing machine—'Bloodshot'. As Ray first trains with fellow super-soldiers, he cannot recall anything from his former life. But when his memories flood back and he remembers the man that killed both him and his wife, he breaks out of the facility to get revenge, only to discover that there's more to the conspiracy than he thought."}}
+  [1m[35m (8.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/movies_controller.rb:9:in `create'
+Processing by MovieGenresController#create as JSON
+  Parameters: {"movie_genres"=>{"movie_id"=>338762, "genre_id"=>878}, "movie_genre"=>{}}
+Processing by UserMoviesController#create as JSON
+  Parameters: {"user_movies"=>{"user_id"=>1, "movie_id"=>338762}, "user_movie"=>{}}
+Processing by MovieGenresController#create as JSON
+  Parameters: {"movie_genres"=>{"movie_id"=>338762, "genre_id"=>28}, "movie_genre"=>{}}
+  [1m[35m (16.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovie Load (0.6ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 338762], ["LIMIT", 1]]
+  [1m[35m (13.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (14.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMovie Create (33.3ms)[0m  [1m[32mINSERT INTO "movies" ("id", "title", "poster_path", "release_date", "vote_average", "overview", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["id", 338762], ["title", "Bloodshot"], ["poster_path", "/8WUVHemHFH2ZIP6NWkwlHWsyrEL.jpg"], ["release_date", "2020-03-05"], ["vote_average", 7], ["overview", "After he and his wife are murdered, marine Ray Garrison is resurrected by a team of scientists. Enhanced with nanotechnology, he becomes a superhuman, biotech killing machine—'Bloodshot'. As Ray first trains with fellow super-soldiers, he cannot recall anything from his former life. But when his memories flood back and he remembers the man that killed both him and his wife, he breaks out of the facility to get revenge, only to discover that there's more to the conspiracy than he thought."], ["created_at", "2020-04-17 15:08:45.246742"], ["updated_at", "2020-04-17 15:08:45.246742"]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  ↳ app/controllers/movies_controller.rb:9:in `create'
+  [1m[36mGenre Load (4.0ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 878], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mUser Load (19.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  [1m[36mMovie Load (46.9ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 338762], ["LIMIT", 1]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (67.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/movies_controller.rb:9:in `create'
+Completed 500 Internal Server Error in 129ms (ActiveRecord: 109.2ms | Allocations: 11298)
+
+
+  
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "movies_pkey"
+DETAIL:  Key (id)=(338762) already exists.
+):
+  
+app/controllers/movies_controller.rb:9:in `create'
+  [1m[36mMovie Load (193.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT $2[0m  [["id", 338762], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  [1m[36mGenre Load (230.7ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mUserMovie Create (64.4ms)[0m  [1m[32mINSERT INTO "user_movies" ("user_id", "movie_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["movie_id", 338762], ["created_at", "2020-04-17 15:08:45.522380"], ["updated_at", "2020-04-17 15:08:45.522380"]]
+  [1m[36mMovieGenre Create (275.9ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 338762], ["genre_id", 878], ["created_at", "2020-04-17 15:08:45.310621"], ["updated_at", "2020-04-17 15:08:45.310621"]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[36mMovieGenre Create (63.7ms)[0m  [1m[32mINSERT INTO "movie_genres" ("movie_id", "genre_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["movie_id", 338762], ["genre_id", 28], ["created_at", "2020-04-17 15:08:45.594143"], ["updated_at", "2020-04-17 15:08:45.594143"]]
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+  [1m[35m (25.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Completed 204 No Content in 412ms (ActiveRecord: 380.8ms | Allocations: 88839)
+
+
+  [1m[35m (114.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/movie_genres_controller.rb:8:in `create'
+Completed 204 No Content in 442ms (ActiveRecord: 411.2ms | Allocations: 90486)
+
+
+  [1m[35m (148.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_movies_controller.rb:9:in `create'
+Completed 204 No Content in 473ms (ActiveRecord: 439.5ms | Allocations: 90480)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:08:50 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (69.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (1.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 79ms (Views: 5.0ms | ActiveRecord: 70.9ms | Allocations: 2356)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:10:25 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (11.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (2.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 26ms (Views: 9.7ms | ActiveRecord: 14.1ms | Allocations: 2356)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:10:58 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (40.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (338.5ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 386ms (Views: 4.8ms | ActiveRecord: 378.9ms | Allocations: 2356)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:12:03 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (14.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (1.9ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 32ms (Views: 13.5ms | ActiveRecord: 16.3ms | Allocations: 2356)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:12:09 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (29.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (1.5ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 36ms (Views: 3.4ms | ActiveRecord: 30.6ms | Allocations: 2356)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:12:21 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (119.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (380.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 506ms (Views: 4.6ms | ActiveRecord: 499.8ms | Allocations: 2357)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:12:26 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (42.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (109.0ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 159ms (Views: 5.3ms | ActiveRecord: 151.5ms | Allocations: 2356)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:12:54 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (93.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (14.5ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 115ms (Views: 4.3ms | ActiveRecord: 108.1ms | Allocations: 2357)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:13:00 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (16.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 52ms (Views: 31.1ms | ActiveRecord: 18.2ms | Allocations: 2359)
+
+
+Started GET "/users/1" for ::1 at 2020-04-17 10:13:12 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[36mMovie Load (85.9ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "user_movies" ON "movies"."id" = "user_movies"."movie_id" WHERE "user_movies"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+Completed 200 OK in 99ms (Views: 10.7ms | ActiveRecord: 86.3ms | Allocations: 2356)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 10:13:16 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (18.0ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 27ms (Views: 6.8ms | ActiveRecord: 18.0ms | Allocations: 1182)
+
+
+Started DELETE "/user_movies/8" for ::1 at 2020-04-17 10:13:16 -0500
+Processing by UserMoviesController#destroy as JSON
+  Parameters: {"id"=>"8", "user_movie"=>{}}
+  [1m[36mUserMovie Load (8.6ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies" WHERE "user_movies"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:19:in `destroy'
+  [1m[35m (2.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+  [1m[36mUserMovie Destroy (19.8ms)[0m  [1m[31mDELETE FROM "user_movies" WHERE "user_movies"."id" = $1[0m  [["id", 8]]
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+  [1m[35m (14.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+Completed 200 OK in 53ms (Views: 0.8ms | ActiveRecord: 44.5ms | Allocations: 2317)
+
+
+Started GET "/user_movies/" for ::1 at 2020-04-17 10:17:56 -0500
+Processing by UserMoviesController#index as */*
+  [1m[36mUserMovie Load (23.0ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies"[0m
+  ↳ app/controllers/user_movies_controller.rb:5:in `index'
+Completed 200 OK in 27ms (Views: 3.6ms | ActiveRecord: 23.0ms | Allocations: 1079)
+
+
+Started DELETE "/user_movies/9" for ::1 at 2020-04-17 10:17:56 -0500
+Processing by UserMoviesController#destroy as JSON
+  Parameters: {"id"=>"9", "user_movie"=>{}}
+  [1m[36mUserMovie Load (3.7ms)[0m  [1m[34mSELECT "user_movies".* FROM "user_movies" WHERE "user_movies"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/user_movies_controller.rb:19:in `destroy'
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+  [1m[36mUserMovie Destroy (9.1ms)[0m  [1m[31mDELETE FROM "user_movies" WHERE "user_movies"."id" = $1[0m  [["id", 9]]
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_movies_controller.rb:20:in `destroy'
+Completed 200 OK in 27ms (Views: 2.9ms | ActiveRecord: 16.3ms | Allocations: 2317)
+
+
