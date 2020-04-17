@@ -31,7 +31,7 @@ module ShowroomBackend
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '*', headers: :any, methods: [:get, :post, :options]
+        resource '*', headers: :any, methods: [:get, :post, :options, :delete, :patch]
       end
     end
     # Only loads a smaller set of middleware suitable for API only apps.
